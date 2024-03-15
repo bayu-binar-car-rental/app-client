@@ -21,7 +21,11 @@ export default function ContentHeader({
           <img src={burgerIcon} alt="Burger Icon" />
         </button>
         <div className="flex space-x-8">
-          <form onSubmit={(e) => e.preventDefault} id="search" className="flex">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            id="search"
+            className="flex"
+          >
             <div className="border p-2 px-3 flex space-x-3">
               <img src={searchIcon} alt="" />
               <input
