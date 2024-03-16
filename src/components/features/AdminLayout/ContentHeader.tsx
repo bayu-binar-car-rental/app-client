@@ -1,6 +1,6 @@
-import burgerIcon from "../../assets/fi_menu.svg";
-import dropdown from "../../assets/fi_chevron-down.svg";
-import searchIcon from "../../assets/fi_search.svg";
+import burgerIcon from "../../../assets/fi_menu.svg";
+import dropdown from "../../../assets/fi_chevron-down.svg";
+import searchIcon from "../../../assets/fi_search.svg";
 
 interface IContentHeaderProps {
   collapse: boolean;
@@ -12,16 +12,20 @@ export default function ContentHeader({
   setCollapse,
 }: IContentHeaderProps) {
   return (
-    <div className="basis-full bg-slate-100">
+    <div className="bg-slate-100 sticky top-0 z-50">
       <div
         id="header"
-        className="p-3 bg-white shadow-md flex items-center justify-between"
+        className="p-3 px-5 bg-white shadow-md flex items-center justify-between"
       >
         <button onClick={() => setCollapse(!collapse)} className="p">
           <img src={burgerIcon} alt="Burger Icon" />
         </button>
         <div className="flex space-x-8">
-          <form onSubmit={(e) => e.preventDefault} id="search" className="flex">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            id="search"
+            className="flex"
+          >
             <div className="border p-2 px-3 flex space-x-3">
               <img src={searchIcon} alt="" />
               <input
