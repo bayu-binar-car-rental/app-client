@@ -1,4 +1,4 @@
-import { IMenus } from "../../../types/cars";
+import { IMenus } from "../../../types/admin";
 
 interface ISidebarMenusProps {
   menus: IMenus[];

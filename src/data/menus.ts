@@ -1,7 +1,7 @@
 import homeIcon from "../assets/fi_home.svg";
 import carIcon from "../assets/fi_truck.svg";
 
-import { IMenus } from "../types/cars";
+import { IMenus } from "../types/admin";
 
 export const menus: IMenus[] = [
   {
