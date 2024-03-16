@@ -1,39 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
-import homeIcon from "../../assets/fi_home.svg";
-import carIcon from "../../assets/fi_truck.svg";
+import SidebarMenus from "../../components/features/AdminLayout/SidebarMenus";
+import SidebarSubmenus from "../../components/features/AdminLayout/SidebarSubmenus";
+import ContentHeader from "../../components/features/AdminLayout/ContentHeader";
 
-import { IMenus } from "../../types/types";
-import SidebarMenus from "../admin/SidebarMenus";
-import SidebarSubmenus from "../admin/SidebarSubmenus";
-import ContentHeader from "../admin/ContentHeader";
+import { menus } from "../../data/menus";
 
-const menus: IMenus[] = [
-  {
-    icon: homeIcon,
-    alt: "Dashboard icon",
-    title: "Dashboard",
-    submenus: ["Dashboard", "Analytics"],
-    paths: ["home", "analytics"],
-  },
-  {
-    icon: carIcon,
-    alt: "Cars icon",
-    title: "Cars",
-    submenus: ["List Car", "Car Rent"],
-    paths: ["list-car", "car-rent"],
-  },
-];
+export const BASE_URL = "https://binar-car-rental-api-bayu.fly.dev";
 
 export default function AdminLayout() {
   const [collapse, setCollapse] = useState<boolean>(true);
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
   const [selectedSubMenu, setSelectedSubMenu] = useState<number>(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(menus[selectedMenu]["paths"][selectedSubMenu]);
+  }, [selectedMenu, selectedSubMenu]);
 
   return (
     <>
-      <div className="flex flex-row h-screen">
+      <div className="flex flex-row h-screen bg-slate-50 overflow-clip">
         {/* Sidebar - Menus */}
+
         <SidebarMenus
           menus={menus}
           selectedMenu={selectedMenu}
@@ -41,15 +31,22 @@ export default function AdminLayout() {
         />
 
         {/* Sidebar - Submenus */}
-        <SidebarSubmenus
-          collapse={collapse}
-          menu={menus[selectedMenu]}
-          selectedSubMenu={selectedSubMenu}
-          setSelectedSubMenu={setSelectedSubMenu}
-        />
+        {!collapse && (
+          <SidebarSubmenus
+            collapse={collapse}
+            menu={menus[selectedMenu]}
+            selectedSubMenu={selectedSubMenu}
+            setSelectedSubMenu={setSelectedSubMenu}
+          />
+        )}
 
         {/* Content */}
-        <ContentHeader collapse={collapse} setCollapse={setCollapse} />
+        <div className="basis-full relative overflow-y-auto">
+          <ContentHeader collapse={collapse} setCollapse={setCollapse} />
+          <div className="p-5">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </>
   );

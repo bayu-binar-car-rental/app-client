@@ -1,3 +1,5 @@
+import { IMeta } from "./response";
+
 export interface ICars {
   id: number;
   plate: string;
@@ -16,21 +18,13 @@ export interface ICars {
   specs: string[];
 }
 
-export interface IMeta {
-  status: number;
-  success: boolean;
-  message: string;
-}
-
 export interface ICarsResponse {
   meta: IMeta;
   data: ICars[];
 }
 
-export interface IMenus {
-  icon: string;
-  alt: string;
-  title: string;
-  submenus: string[];
-  paths: string[];
+export interface ICarsParams {
+  search?: string;
+  availableOnly?: boolean;
+  size?: string;
 }

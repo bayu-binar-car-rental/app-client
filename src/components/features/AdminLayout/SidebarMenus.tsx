@@ -1,4 +1,4 @@
-import { IMenus } from "../../types/types";
+import { IMenus } from "../../../types/cars";
 
 interface ISidebarMenusProps {
   menus: IMenus[];
@@ -19,7 +19,9 @@ export default function sidebarMenus({
           selectedMenu === index ? (
             <div
               key={index}
-              onClick={() => setSelectedMenu(index)}
+              onClick={() => {
+                setSelectedMenu(index);
+              }}
               className="group flex flex-col justify-center aligns-center py-2 bg-blue-500 hover:cursor-pointer"
             >
               <img className="mx-4" src={menu.icon} alt={menu.alt} />
