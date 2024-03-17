@@ -41,7 +41,7 @@ export default function AdminLayout() {
         )}
 
         {/* Content */}
-        <div className="basis-full relative overflow-y-auto">
+        <div className="basis-full relative overflow-y-auto h-full">
           <ContentHeader collapse={collapse} setCollapse={setCollapse} />
           <div className="p-5">
             <Outlet />

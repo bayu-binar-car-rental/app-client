@@ -7,7 +7,8 @@ export default function ToggleButton({ toggle, setToggle }: IToggle) {
   return (
     <button
       onClick={() => setToggle(!toggle)}
-      className={`w-2/4 bg-white rounded-full border border-slate-300 flex items-center ${
+      type="button"
+      className={`w-full rounded-full border border-slate-300 flex items-center ${
         toggle ? "justify-end bg-green-500" : "justify-start bg-slate-300"
       }`}
     >

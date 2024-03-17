@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import rightChevron from "../../../assets/chevron-right.svg";
 import { ICarsParams } from "../../../types/cars";
-import CarListContent from "./CarListContent";
-import ToggleButton from "../../ui/ToggleButton";
+import CarListContent from "../../../components/features/CarList/CarListContent";
+import ToggleButton from "../../../components/ui/ToggleButton";
 
 const buttonLabels: string[] = ["All", "Small", "Medium", "Large"];
 
@@ -12,6 +13,8 @@ export default function CarList() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
   const [params, setParams] = useState<ICarsParams>({ availableOnly: false });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setParams({ ...params, availableOnly: toggle });
@@ -62,13 +65,15 @@ export default function CarList() {
 
         {/* Right */}
         <div className="flex flex-col justify-between">
-          <button className="bg-blue-800 text-white p-2 px-4 flex space-x-3 items-center hover:bg-blue-900">
+          <button
+            onClick={() => navigate("add-new-car")}
+            className="bg-blue-800 text-white p-2 px-4 flex space-x-3 items-center hover:bg-blue-900"
+          >
             <span className="text-xl">+</span>
             <span>Add New Car</span>
           </button>
 
           <div className="flex justify-end">
-            {/* <p className="text-sm">Available Only</p> */}
             <ToggleButton toggle={toggle} setToggle={setToggle} />
           </div>
         </div>
