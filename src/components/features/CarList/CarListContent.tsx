@@ -4,14 +4,14 @@ import { ICars, ICarsResponse, ICarsParams } from "../../../types/cars";
 import CarCard from "./CarCard";
 
 interface ILoading {
-  isLoading: boolean;
   params: ICarsParams;
+  isLoading: boolean;
   setIsLoading: (state: boolean) => void;
 }
 
 export default function CarListContent({
-  isLoading,
   params,
+  isLoading,
   setIsLoading,
 }: ILoading) {
   const [cars, setCars] = useState<ICars[]>([]);
@@ -26,6 +26,7 @@ export default function CarListContent({
         const size = params?.size || "";
 
         const response = await fetch(
+          // `http://localhost:3000/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
           `${BASE_URL}/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
         );
         const data = (await response.json()) as ICarsResponse;

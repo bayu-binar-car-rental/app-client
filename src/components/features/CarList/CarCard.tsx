@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CarCard(car: ICars) {
   const navigate = useNavigate();
+
   return (
     <div className="border border-slate-300 rounded-md bg-white shadow-md relative overflow-hidden h-fit">
       {car.available ? (
@@ -39,7 +40,7 @@ export default function CarCard(car: ICars) {
             </div>
             <div className="flex space-x-2">
               <img src={clockIcon} alt="Key Icon" />
-              <p>Updated at 4 Apr 2022, 09.00</p>
+              <p>Updated at {getDate(car.updated_at as string)}</p>
             </div>
           </div>
         </div>
@@ -51,7 +52,7 @@ export default function CarCard(car: ICars) {
             <span>Delete</span>
           </button>
           <button
-            onClick={() => navigate(`${car.id}`)}
+            onClick={() => navigate(`edit-car/${car.id}`)}
             className="w-full p-3 px-4 flex bg-green-500 rounded-sm space-x-2 items-center justify-center hover:bg-green-600"
           >
             <span>

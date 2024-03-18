@@ -19,9 +19,6 @@ export default function sidebarMenus({
           selectedMenu === index ? (
             <div
               key={index}
-              onClick={() => {
-                setSelectedMenu(index);
-              }}
               className="group flex flex-col justify-center aligns-center py-2 bg-blue-500 hover:cursor-pointer"
             >
               <img className="mx-4" src={menu.icon} alt={menu.alt} />
@@ -42,20 +39,6 @@ export default function sidebarMenus({
             </div>
           )
         )}
-        {/* {menus.map((menu, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => setSelectedMenu(index)}
-              className="group flex flex-col justify-center aligns-center py-2 hover:bg-blue-500"
-            >
-              <img className="mx-4" src={menu.icon} alt={menu.alt} />
-              <p className="text-white text-[0.7rem] text-center group-hover:font-bold">
-                {menu.title}
-              </p>
-            </div>
-          );
-        })} */}
       </div>
     </>
   );

@@ -4,10 +4,17 @@ interface IProps {
   type: string;
   title: string;
   placeholder: string | number;
+  input: string | number;
   setInput: Dispatch<SetStateAction<string>>;
 }
 
-export default function Input({ type, title, placeholder, setInput }: IProps) {
+export default function Input({
+  type,
+  title,
+  placeholder,
+  input,
+  setInput,
+}: IProps) {
   const handleUploadCover = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
@@ -41,6 +48,7 @@ export default function Input({ type, title, placeholder, setInput }: IProps) {
       <input
         className="p-2 basis-3/4 border border-slate-300 focus:outline-none"
         type={type}
+        value={input}
         onChange={(e) => {
           if (type !== "file") {
             setInput(e.target.value);
