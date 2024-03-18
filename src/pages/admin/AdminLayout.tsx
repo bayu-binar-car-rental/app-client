@@ -13,17 +13,22 @@ export default function AdminLayout() {
   const [collapse, setCollapse] = useState<boolean>(true);
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
   const [selectedSubMenu, setSelectedSubMenu] = useState<number>(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    setSelectedSubMenu(0);
+    navigate(menus[selectedMenu]["paths"][0]);
+  }, [selectedMenu]);
+
+  useEffect(() => {
     navigate(menus[selectedMenu]["paths"][selectedSubMenu]);
-  }, [selectedMenu, selectedSubMenu]);
+  }, [selectedSubMenu]);
 
   return (
     <>
       <div className="flex flex-row h-screen bg-slate-50 overflow-clip">
         {/* Sidebar - Menus */}
-
         <SidebarMenus
           menus={menus}
           selectedMenu={selectedMenu}
@@ -44,7 +49,15 @@ export default function AdminLayout() {
         <div className="basis-full relative overflow-y-auto h-full">
           <ContentHeader collapse={collapse} setCollapse={setCollapse} />
           <div className="p-5">
-            <Outlet />
+            <Outlet
+              context={[
+                menus,
+                selectedMenu,
+                setSelectedMenu,
+                selectedSubMenu,
+                setSelectedSubMenu,
+              ]}
+            />
           </div>
         </div>
       </div>

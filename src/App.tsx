@@ -1,8 +1,12 @@
 import LandingPage from "./pages/user/LandingPage";
 import AdminLayout from "./pages/admin/AdminLayout";
 import CarListPage from "./pages/admin/Cars/CarListPage";
-import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
+import CarRentPage from "./pages/admin/Cars/CarRentPage";
+// import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
+import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
+import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -10,18 +14,17 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: "/admin",
+    path: "admin",
     element: <AdminLayout />,
     children: [
       {
         path: "dashboard",
-        element: <p>Dashboard</p>,
+        element: <DashboardPage />,
       },
       {
         path: "analytics",
-        element: <p>Analytics</p>,
+        element: <AnalyticsPage />,
       },
-      // Cars
       {
         path: "car-list",
         element: <CarListPage />,
@@ -31,12 +34,12 @@ const router = createBrowserRouter([
         element: <CarDetailsPage />,
       },
       {
-        path: "car-list/:id",
+        path: "car-list/edit-car/:carId",
         element: <CarDetailsPage />,
       },
       {
         path: "car-rent",
-        element: <p>Car Rent</p>,
+        element: <CarRentPage />,
       },
     ],
   },

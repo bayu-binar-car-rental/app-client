@@ -9,6 +9,8 @@ import ToggleButton from "../../../components/ui/ToggleButton";
 const buttonLabels: string[] = ["All", "Small", "Medium", "Large"];
 
 export default function CarList() {
+  console.log(new Date().toISOString());
+
   const [selectedCarSize, setSelectedCarSize] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
