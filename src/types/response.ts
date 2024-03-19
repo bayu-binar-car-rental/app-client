@@ -1,5 +1,5 @@
 export interface IMeta {
-  status: number;
+  code: number;
   success: boolean;
   message: string;
 }

@@ -6,6 +6,7 @@ interface IProps {
   placeholder: string | number;
   input: string | number;
   setInput: Dispatch<SetStateAction<string>>;
+  setImageLoading?: (state: boolean) => void;
 }
 
 export default function Input({
@@ -14,12 +15,14 @@ export default function Input({
   placeholder,
   input,
   setInput,
+  setImageLoading,
 }: IProps) {
   const handleUploadCover = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
     if (files && files.length > 0) {
       try {
+        setImageLoading?.(true);
         const formData = new FormData();
         formData.append("image", files[0]);
 
@@ -35,6 +38,8 @@ export default function Input({
         setInput(data.data.secure_url);
       } catch (error) {
         console.log("error > ", error);
+      } finally {
+        setImageLoading?.(false);
       }
     }
   };
