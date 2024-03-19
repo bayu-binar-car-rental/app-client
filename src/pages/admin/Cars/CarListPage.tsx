@@ -9,10 +9,8 @@ import ToggleButton from "../../../components/ui/ToggleButton";
 const buttonLabels: string[] = ["All", "Small", "Medium", "Large"];
 
 export default function CarList() {
-  console.log(new Date().toISOString());
-
   const [selectedCarSize, setSelectedCarSize] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [toggle, setToggle] = useState<boolean>(false);
   const [params, setParams] = useState<ICarsParams>({ availableOnly: false });
 
@@ -24,7 +22,6 @@ export default function CarList() {
 
   return (
     <>
-      {/* Testiong */}
       {/* Breadcrumbs */}
       <div className="flex space-x-2">
         <span className="font-bold hover:cursor-pointer">Cars</span>
@@ -75,7 +72,7 @@ export default function CarList() {
             <span>Add New Car</span>
           </button>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end ps-[40%]">
             <ToggleButton toggle={toggle} setToggle={setToggle} />
           </div>
         </div>

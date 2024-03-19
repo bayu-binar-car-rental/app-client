@@ -15,6 +15,7 @@ export default function CarDetailsPage() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [imageLoading, setImageLoading] = useState<boolean>(false);
 
   const [model, setModel] = useState<string>("");
   const [manufacture, setManufacture] = useState<string>("");
@@ -216,12 +217,25 @@ export default function CarDetailsPage() {
                 placeholder="Image"
                 input=""
                 setInput={setImage}
+                setImageLoading={setImageLoading}
               />
-              {image !== "" && (
-                <div className="border border-slate-300 rounded-sm p-1">
+              {imageLoading ? (
+                <div className="border border-slate-300 bg-gray-100 rounded-sm p-1 flex justify-center items-center">
+                  <p className="text-gray-500">Loading...</p>
+                </div>
+              ) : image !== "" ? (
+                <div className="border border-slate-300 rounded-sm p-1 flex justify-center">
                   <img src={image} alt="" />
                 </div>
+              ) : (
+                ""
               )}
+
+              {/* {image !== "" && (
+                <div className="border border-slate-300 rounded-sm p-1 flex justify-center">
+                  <img src={image} alt="" />
+                </div>
+              )} */}
             </div>
 
             {/* Right */}

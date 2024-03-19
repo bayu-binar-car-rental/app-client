@@ -15,10 +15,11 @@ export default function CarListContent({
   setIsLoading,
 }: ILoading) {
   const [cars, setCars] = useState<ICars[]>([]);
+  const [isFetchFinished, setIsFetchFinished] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoading(true);
-
+    console.log(isLoading);
+    console.log(cars.length);
     try {
       async function fetchCarData() {
         const search = params?.search || "";
@@ -26,12 +27,18 @@ export default function CarListContent({
         const size = params?.size || "";
 
         const response = await fetch(
-          // `http://localhost:3000/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
           `${BASE_URL}/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
         );
         const data = (await response.json()) as ICarsResponse;
 
-        setCars(data.data);
+        if (data.meta.code !== 401) {
+          await setCars(data.data);
+        } else {
+          await setCars([]);
+        }
+
+        await setIsLoading(false);
+        await setIsFetchFinished(true);
       }
 
       fetchCarData();
@@ -43,14 +50,20 @@ export default function CarListContent({
   }, [params]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <p>Loading...</p>;
   }
 
   return (
     <>
-      {cars.map((car: ICars) => {
-        return <CarCard key={car.id} {...car} />;
-      })}
+      {isFetchFinished && cars.length < 1 ? (
+        <p>Cars not found</p>
+      ) : (
+        cars.map((car: ICars) => {
+          return (
+            <CarCard key={car.id} car={car} setCars={setCars} params={params} />
+          );
+        })
+      )}
     </>
   );
 }
