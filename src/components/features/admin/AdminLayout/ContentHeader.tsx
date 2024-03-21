@@ -1,6 +1,6 @@
-import burgerIcon from "../../../assets/fi_menu.svg";
-import dropdown from "../../../assets/fi_chevron-down.svg";
-import searchIcon from "../../../assets/fi_search.svg";
+import burgerIcon from "../../../../assets/fi_menu.svg";
+import dropdown from "../../../../assets/fi_chevron-down.svg";
+import searchIcon from "../../../../assets/fi_search.svg";
 
 interface IContentHeaderProps {
   collapse: boolean;

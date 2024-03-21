@@ -1,4 +1,4 @@
-import LandingPage from "./pages/user/landing-page/LandingPage";
+import LandingPage from "./pages/user/LandingPage";
 import AdminLayout from "./pages/admin/AdminLayout";
 import CarListPage from "./pages/admin/Cars/CarListPage";
 import CarRentPage from "./pages/admin/Cars/CarRentPage";
@@ -6,7 +6,7 @@ import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
 import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
 import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 
-import UserLayout from "./pages/user/UserLayout";
+import UserLayout from "./components/features/user/UserLayout";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

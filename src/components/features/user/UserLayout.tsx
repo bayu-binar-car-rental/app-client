@@ -2,22 +2,24 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import Hero from "./Hero";
 import Footer from "./Footer";
-import Title from "../../components/ui/Title";
-import carImage from "../../assets/img_car.png";
+import Title from "../../ui/Title";
+import carImage from "../../../assets/img_car.png";
+import { useState } from "react";
 
 export default function UserLayout() {
   const navigate = useNavigate();
+  const [openCanvas, setOpenCanvas] = useState<boolean>(false);
 
   return (
     <>
-      <div className="space-y-20 min-h-screen">
+      <div className={`space-y-10 h-screen ${openCanvas && "overflow-hidden"}`}>
         {/* Hero */}
         <section id="hero">
-          <Hero>
-            <div className="flex">
+          <Hero openCanvas={openCanvas} setOpenCanvas={setOpenCanvas}>
+            <div className="lg:flex">
               <div
                 id="content"
-                className="basis-1/2 flex flex-col space-y-4 py-20"
+                className="basis-1/2 flex flex-col space-y-4 py-10 pb-64 md:pb-[22rem] lg:pb-10 lg:py-20 xl:py-24"
               >
                 <Title
                   title="Sewa & Rental Mobil Terbaik di kawasan Denpasar"
@@ -38,13 +40,17 @@ export default function UserLayout() {
                 </div>
               </div>
               <div className="basis-auto flex justify-end items-end absolute bottom-0 right-0">
-                <img src={carImage} alt="Car Image" width={"90%"} />
+                <img
+                  className="w-11/12 z-10 overflow-x-hidden md:w-full lg:w-10/12 xl:w-11/12"
+                  src={carImage}
+                  alt="Car Image"
+                />
               </div>
             </div>
           </Hero>
         </section>
 
-        <div className="container px-20 space-y-20">
+        <div className="container-xl space-y-10 px-5 md:px-10 lg:px-20 xl:px-32">
           <Outlet />
           <Footer />
         </div>

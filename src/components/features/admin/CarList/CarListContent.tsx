@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../../pages/admin/AdminLayout";
-import { ICars, ICarsResponse, ICarsParams } from "../../../types/cars";
+import { BASE_URL } from "../../../../pages/admin/AdminLayout";
+import { ICars, ICarsResponse, ICarsParams } from "../../../../types/cars";
 import CarCard from "./CarCard";
 
 interface ILoading {

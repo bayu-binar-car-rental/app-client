@@ -1,7 +1,7 @@
-import serviceImage from "../../../assets/img_service.png";
-import checklistIcon from "../../../assets/checklist.png";
+import serviceImage from "../../../../assets/img_service.png";
+import checklistIcon from "../../../../assets/checklist.png";
 
-import Title from "../../../components/ui/Title";
+import Title from "../../../ui/Title";
 
 const features: string[] = [
   "Sewa Mobil Dengan Supir di Denpasar 12 Jam",
@@ -16,12 +16,12 @@ export default function Features() {
     <>
       {/* Features */}
       <section id="features">
-        <div className="grid grid-cols-2">
-          <div className="flex justify-center items-center">
+        <div className="sm:grid sm:grid-cols-2 md:space-x-3">
+          <div className="flex justify-center items-center p-5 ">
             <img src={serviceImage} alt="" />
           </div>
-          <div className="flex items-center p-5">
-            <div className="space-y-3">
+          <div className="flex items-center">
+            <div className="space-y-3 ">
               <Title title="Best Car Rental for any kind of trip in Denpasar!" />
               <p>
                 Sewa mobil di Denpasar bersama Binar Car Rental jaminan harga

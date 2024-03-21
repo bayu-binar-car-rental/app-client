@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import rightChevron from "../../../assets/chevron-right.svg";
 import { ICarsParams } from "../../../types/cars";
-import CarListContent from "../../../components/features/CarList/CarListContent";
+import CarListContent from "../../../components/features/admin/CarList/CarListContent";
 import ToggleButton from "../../../components/ui/ToggleButton";
 
 const buttonLabels: string[] = ["All", "Small", "Medium", "Large"];
