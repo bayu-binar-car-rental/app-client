@@ -33,7 +33,9 @@ export default function UserLayout() {
                 <div>
                   <button
                     onClick={() => navigate("car")}
-                    className="p-2 px-5 bg-[#5CB85F] text-white"
+                    className={`p-2 px-5 bg-[#5CB85F] text-white ${
+                      window.location.pathname !== "/" && "hidden"
+                    }`}
                   >
                     Mulai Sewa Mobil
                   </button>
