@@ -1,9 +1,9 @@
-import priceIcon from "../../../assets/icon_price.png";
-import hoursIcon from "../../../assets/icon_24hrs.png";
-import completeIcon from "../../../assets/icon_complete.png";
-import professionalIcon from "../../../assets/icon_professional.png";
+import priceIcon from "../../../../assets/icon_price.png";
+import hoursIcon from "../../../../assets/icon_24hrs.png";
+import completeIcon from "../../../../assets/icon_complete.png";
+import professionalIcon from "../../../../assets/icon_professional.png";
 
-import Title from "../../../components/ui/Title";
+import Title from "../../../ui/Title";
 
 interface ICard {
   image: string;
@@ -54,9 +54,11 @@ export default function Services() {
       {/* Why Us */}
       <section id="services">
         <div className="space-y-5">
-          <Title title="Why Us?" />
-          <p>Mengapa harus pilih Binar Car Rental?</p>
-          <div className="grid grid-cols-4 space-x-3">
+          <Title title="Why Us?" sx={["text-center", "md:text-left"]} />
+          <p className="text-center md:text-left">
+            Mengapa harus pilih Binar Car Rental?
+          </p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {cards.map((card, index) => {
               return <Card key={index} {...card} />;
             })}

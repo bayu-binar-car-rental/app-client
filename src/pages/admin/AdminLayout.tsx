@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import SidebarMenus from "../../components/features/AdminLayout/SidebarMenus";
-import SidebarSubmenus from "../../components/features/AdminLayout/SidebarSubmenus";
-import ContentHeader from "../../components/features/AdminLayout/ContentHeader";
+import SidebarMenus from "../../components/features/admin/AdminLayout/SidebarMenus";
+import SidebarSubmenus from "../../components/features/admin/AdminLayout/SidebarSubmenus";
+import ContentHeader from "../../components/features/admin/AdminLayout/ContentHeader";
 
 import { menus } from "../../data/menus";
 

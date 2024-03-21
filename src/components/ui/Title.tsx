@@ -9,7 +9,7 @@ export default function Title({
   title,
   center,
   variant = "h3",
-  sx = [""],
+  sx = ["", ""],
 }: ITitle) {
   switch (variant) {
     case "h1":
@@ -32,25 +32,41 @@ export default function Title({
       );
     case "h3":
       return (
-        <h3 className={`font-bold text-3xl ${center && "text-center"}`}>
+        <h3
+          className={`font-bold text-3xl ${center && "text-center"} ${sx.join(
+            " "
+          )}`}
+        >
           {title}
         </h3>
       );
     case "h4":
       return (
-        <h4 className={`font-bold text-2xl ${center && "text-center"}`}>
+        <h4
+          className={`font-bold text-2xl ${center && "text-center"} ${sx.join(
+            " "
+          )}`}
+        >
           {title}
         </h4>
       );
     case "h5":
       return (
-        <h5 className={`font-bold text-xl ${center && "text-center"}`}>
+        <h5
+          className={`font-bold text-xl ${center && "text-center"} ${sx.join(
+            " "
+          )}`}
+        >
           {title}
         </h5>
       );
     case "h6":
       return (
-        <h6 className={`font-bold text-lg ${center && "text-center"}`}>
+        <h6
+          className={`font-bold text-lg ${center && "text-center"} ${sx.join(
+            " "
+          )}`}
+        >
           {title}
         </h6>
       );

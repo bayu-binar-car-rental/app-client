@@ -1,15 +1,15 @@
-import keyIcon from "../../../assets/fi_key.svg";
-import clockIcon from "../../../assets/fi_clock.svg";
-import trashIcon from "../../../assets/fi_trash-2.svg";
-import editIcon from "../../../assets/fi_edit.svg";
-import modalImage from "../../../assets/img-BeepBeep.png";
+import keyIcon from "../../../../assets/fi_key.svg";
+import clockIcon from "../../../../assets/fi_clock.svg";
+import trashIcon from "../../../../assets/fi_trash-2.svg";
+import editIcon from "../../../../assets/fi_edit.svg";
+import modalImage from "../../../../assets/img-BeepBeep.png";
 
-import { ICars } from "../../../types/cars";
-import { ICarsParams } from "../../../types/cars";
-import { ICarsResponse } from "../../../types/cars";
+import { ICars } from "../../../../types/cars";
+import { ICarsParams } from "../../../../types/cars";
+import { ICarsResponse } from "../../../../types/cars";
 
-import getDate from "../../../utils/getDate";
-import convertRupiah from "../../../utils/convertRupiah";
+import getDate from "../../../../utils/getDate";
+import convertRupiah from "../../../../utils/convertRupiah";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -28,6 +28,11 @@ export default function CarCard({ car, params, setCars }: IProps) {
   const onClickDelete = (id: number) => {
     setOpenModal(true);
     setSelectedId(id);
+  };
+
+  const handleCancelDelete = () => {
+    setOpenModal(false);
+    setSelectedId(0);
   };
 
   const handleDelete = async () => {
@@ -61,11 +66,6 @@ export default function CarCard({ car, params, setCars }: IProps) {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleCancelDelete = () => {
-    setOpenModal(false);
-    setSelectedId(0);
   };
 
   return (

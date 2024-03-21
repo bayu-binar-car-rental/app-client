@@ -1,5 +1,5 @@
-import Title from "../../../components/ui/Title";
-import chevronDown from "../../../assets/fi_chevron-down.svg";
+import Title from "../../../ui/Title";
+import chevronDown from "../../../../assets/fi_chevron-down.svg";
 import { useState } from "react";
 
 interface IAccordion {
@@ -22,7 +22,6 @@ function Accordion({ title, selected, onClick }: IAccordion) {
           alt=""
         />
       </div>
-      <hr className={`${!selected && "hidden"}`} />
       <p className={`transition duration-150 ${!selected && "hidden"}`}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
         praesentium qui at sint fuga optio voluptatem expedita assumenda!
@@ -55,25 +54,11 @@ export default function FAQ() {
     }
   };
 
-  //   useEffect(() => {
-  //     console.log(selected);
-  //     console.log(openAccordion);
-  //   }, [handleClick]);
-
-  //   useEffect(() => {
-  //     console.log("Clicked!");
-  //     if (selected !== openAccordion) {
-  //       setOpenAccordion(selected);
-  //     } else {
-  //       setOpenAccordion(null);
-  //     }
-  //   }, [setSelected]);
-
   return (
     <>
       {/* FAQ */}
       <section id="faq">
-        <div className="grid grid-cols-2">
+        <div className="sm:grid grid-cols-2 space-y-3 lg:space-y-0">
           <div className="space-y-4">
             <Title title="Frequently Asked Question" />
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>

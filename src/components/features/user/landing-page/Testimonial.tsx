@@ -1,11 +1,11 @@
-import Title from "../../../components/ui/Title";
+import Title from "../../../ui/Title";
 
-import rating from "../../../assets/Rate.png";
-import userOne from "../../../assets/img_photo.png";
-import userTwo from "../../../assets/img_photo_2.png";
-import chevronLeft from "../../../assets/fi_chevron-left.png";
-import chevronRight from "../../../assets/fi_chevron-right.png";
-import { useEffect, useState } from "react";
+import rating from "../../../../assets/Rate.png";
+import userOne from "../../../../assets/img_photo.png";
+import userTwo from "../../../../assets/img_photo_2.png";
+import chevronLeft from "../../../../assets/fi_chevron-left.png";
+import chevronRight from "../../../../assets/fi_chevron-right.png";
+import { useState } from "react";
 
 interface ITestimoni {
   image: string;
@@ -52,15 +52,17 @@ function TestimoniCard({
   selectedTestimoni: number;
 }) {
   return (
-    <div className="p-10 px-20 bg-[#F1F3FF] rounded-lg max-w-3xl space-y-7">
-      <div className="flex items-center justify-center space-x-5">
-        <div className="basis-1/4 flex items-center justify-center">
+    <div className="p-10 px-10 sm:px-20 bg-[#F1F3FF] rounded-lg max-w-3xl space-y-7">
+      <div className="sm:flex space-y-3 items-center justify-center md:space-x-7">
+        <div className="basis-1/4 md:basis-1/2 lg:basis-1/3 flex items-center justify-center">
           <img src={image} alt="" />
         </div>
-        <div className="space-y-2">
-          <img src={rating} alt="" />
-          <p>{testimoni}</p>
-          <p className="font-bold text-md">{user}</p>
+        <div className="space-y-2 flex flex-col items-center">
+          <div className="mb-3 md:mb-0">
+            <img src={rating} alt="" />
+          </div>
+          <p className="text-left">{testimoni}</p>
+          <p className="text-left font-bold text-md">{user}</p>
         </div>
       </div>
       <div className="flex items-center justify-center space-x-2">
@@ -95,10 +97,6 @@ export default function Testimonial() {
       }
     }
   };
-
-  useEffect(() => {
-    console.log(selectedTestimoni);
-  }, [selectedTestimoni]);
 
   return (
     <>

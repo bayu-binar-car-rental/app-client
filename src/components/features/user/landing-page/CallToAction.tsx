@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Title from "../../../components/ui/Title";
+import Title from "../../../ui/Title";
 
 export default function CallToAction() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function CallToAction() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <div className="pt-10">
+          <div className="sm:pt-10">
             <button
               className="p-2 px-5 bg-[#5CB85F] text-white"
               onClick={() => navigate("car")}
