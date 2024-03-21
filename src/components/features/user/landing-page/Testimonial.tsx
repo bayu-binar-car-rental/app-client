@@ -17,25 +17,25 @@ const testimonies: ITestimoni[] = [
   {
     image: userOne,
     testimoni:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, magni soluta aperiam explicabo repellat fuga quasi. Voluptates a et possimus, adipisci dignissimos eos suscipit, dolorum assumenda amet voluptatem excepturi nisi?",
+      "Binar Car Rental made our road trip unforgettable! The booking process was seamless, and the car was in pristine condition when we picked it up. We explored stunning landscapes hassle-free, thanks to their reliable service. Highly recommend!",
     user: "Bayu, 23, Bali",
   },
   {
     image: userTwo,
     testimoni:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, magni soluta aperiam explicabo repellat fuga quasi. Voluptates a et possimus, adipisci dignissimos eos suscipit, dolorum assumenda amet voluptatem excepturi nisi?",
+      "Exceptional service from start to finish! Binar Car Rental provided us with a wide selection of vehicles to choose from, accommodating our needs perfectly. Their friendly staff ensured we had all the information we needed, making our vacation smooth sailing. Will definitely use them again!",
     user: "Beber, 23, Jogja",
   },
   {
     image: userOne,
     testimoni:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, magni soluta aperiam explicabo repellat fuga quasi. Voluptates a et possimus, adipisci dignissimos eos suscipit, dolorum assumenda amet voluptatem excepturi nisi?",
+      "Binar Car Rental exceeded our expectations! The convenience of online booking combined with their competitive prices made it an easy choice for our family vacation. The vehicle was clean and well-maintained, offering both comfort and safety throughout our trip. Five-star experience!",
     user: "Ifen 24, Jakarta",
   },
   {
     image: userTwo,
     testimoni:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, magni soluta aperiam explicabo repellat fuga quasi. Voluptates a et possimus, adipisci dignissimos eos suscipit, dolorum assumenda amet voluptatem excepturi nisi?",
+      "I can't praise Binar Car Rental enough! Their customer service is top-notch, with prompt responses to any queries we had. Renting with them was a breeze, and the car surpassed our expectations. Whether it's for business or leisure, Binar Car Rental is the way to go for a stress-free journey!",
     user: "Fadil 23, Semarang",
   },
 ];
@@ -57,7 +57,7 @@ function TestimoniCard({
         <div className="basis-1/4 md:basis-1/2 lg:basis-1/3 flex items-center justify-center">
           <img src={image} alt="" />
         </div>
-        <div className="space-y-2 flex flex-col items-center">
+        <div className="space-y-2 flex flex-col items-center md:items-start">
           <div className="mb-3 md:mb-0">
             <img src={rating} alt="" />
           </div>
