@@ -19,7 +19,7 @@ export default function UserLayout() {
             <div className="lg:flex">
               <div
                 id="content"
-                className="basis-1/2 flex flex-col space-y-4 py-10 pb-64 md:pb-[22rem] lg:pb-10 lg:py-20 xl:py-24"
+                className="basis-1/2 flex flex-col space-y-4 py-10 pb-64 md:pb-[22rem] lg:pb-10 lg:py-24 xl:py-28"
               >
                 <Title
                   title="Sewa & Rental Mobil Terbaik di kawasan Denpasar"
