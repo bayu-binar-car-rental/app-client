@@ -59,7 +59,12 @@ function Navbar({ openCanvas, setOpenCanvas }: IProps) {
         <a href="/#services">Why Us</a>
         <a href="/#testimonial">Testimoni</a>
         <a href="/#faq">FAQ</a>
-        <button className="p-1 px-5 bg-[#5CB85F] text-white">Register</button>
+        <button
+          onClick={() => navigate("/auth/sign-up")}
+          className="p-1 px-5 bg-[#5CB85F] text-white"
+        >
+          Register
+        </button>
       </div>
     </nav>
   );
