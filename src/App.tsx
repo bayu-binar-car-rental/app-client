@@ -6,9 +6,13 @@ import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
 import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
 import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 
+import AuthLayout from "./pages/auth/AuthLayout";
+
 import UserLayout from "./components/features/user/UserLayout";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignUpPage from "./pages/auth/SignUpPage";
+import SignInPage from "./pages/auth/SignInPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,20 @@ const router = createBrowserRouter([
       {
         path: "/car",
         element: <></>,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "sign-up",
+        element: <SignUpPage />,
+      },
+      {
+        path: "sign-in",
+        element: <SignInPage />,
       },
     ],
   },
