@@ -8,7 +8,7 @@ export default function AuthLayout() {
   return (
     <>
       <div className="h-screen lg:grid lg:grid-cols-2 overflow-hidden">
-        <div id="form" className="p-5 py-10 lg:px-32 lg:my-auto">
+        <div id="form" className="p-5 py-10 lg:px-32 lg:my-auto relative">
           <div className="space-y-10">
             <div
               onClick={() => navigate("/")}
