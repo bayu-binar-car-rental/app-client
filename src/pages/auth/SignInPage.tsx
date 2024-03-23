@@ -33,8 +33,7 @@ export default function SignInPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/auth/login",
-        // "https://binar-car-rental-api-bayu.fly.dev/api/v1/auth/login",
+        "https://binar-car-rental-api-bayu.fly.dev/api/v1/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
