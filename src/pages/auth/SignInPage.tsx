@@ -70,7 +70,7 @@ export default function SignInPage() {
         </p>
         <input
           className="p-2 px-4 w-full focus:outline-none border rounded-md"
-          type="text"
+          type="email"
           placeholder="johndoe@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

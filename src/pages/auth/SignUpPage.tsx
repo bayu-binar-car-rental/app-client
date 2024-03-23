@@ -76,7 +76,7 @@ export default function SignUpPage() {
           className="p-2 px-4 w-full focus:outline-none border rounded-md"
           type="text"
           placeholder="Nama Lengkap"
-          autoCapitalize="on"
+          autoCapitalize="words"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -86,7 +86,7 @@ export default function SignUpPage() {
         </p>
         <input
           className="p-2 px-4 w-full focus:outline-none border rounded-md"
-          type="text"
+          type="email"
           placeholder="johndoe@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
