@@ -48,10 +48,11 @@ export default function SignInPage() {
         setResponseMessage(data.data);
       } else {
         setResponseStatus(true);
-        setResponseMessage("Login successful! Redirecting to Landing Page...");
+        localStorage.setItem("token", `Bearer ${data.data}`);
+        setResponseMessage("Login successful! Redirecting...");
         setTimeout(() => {
-          navigate("/");
-        }, 1000);
+          navigate(-2);
+        }, 1500);
       }
       setShowResponseMessage(true);
     } catch (e) {
@@ -107,7 +108,7 @@ export default function SignInPage() {
             isLoading && "bg-gray-400"
           }`}
         >
-          {isLoading ? "Loading..." : "Sign Up"}
+          {isLoading ? "Loading..." : "Sign In"}
         </button>
       </form>
       <p>
