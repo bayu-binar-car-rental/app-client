@@ -6,6 +6,9 @@ import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
 import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
 import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 
+import store from "./redux/store.ts";
+import { Provider } from "react-redux";
+
 import AuthLayout from "./pages/auth/AuthLayout";
 
 import UserLayout from "./components/features/user/UserLayout";
@@ -76,7 +79,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
 export default App;

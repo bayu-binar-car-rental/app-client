@@ -1,8 +1,12 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import burgerIcon from "../../../assets/fi_menu.svg";
-import closeIcon from "../../../assets/fi_x.png";
+import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
+import { setToken } from "../../../redux/slices/authSlice";
+
 import Title from "../../ui/Title";
+import closeIcon from "../../../assets/fi_x.png";
+import burgerIcon from "../../../assets/fi_menu.svg";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 interface IProps {
   openCanvas: boolean;
@@ -11,6 +15,13 @@ interface IProps {
 
 function Navbar({ openCanvas, setOpenCanvas }: IProps) {
   const navigate = useNavigate();
+  const [isDropdown, setIsDropdown] = useState<boolean>(false);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setToken());
+  }, []);
 
   return (
     <nav className="flex justify-between">
@@ -35,6 +46,11 @@ function Navbar({ openCanvas, setOpenCanvas }: IProps) {
             <Title title="BCR" variant="h6" />
             <img onClick={() => setOpenCanvas(false)} src={closeIcon} alt="" />
           </div>
+          {isLoggedIn && (
+            <div className="py-2 px-4 bg-blue-700 flex justify-center items-center rounded-full text-white">
+              <p className="">U</p>
+            </div>
+          )}
           <a href="/#features" onClick={() => setOpenCanvas(false)}>
             Our Services
           </a>
@@ -48,12 +64,31 @@ function Navbar({ openCanvas, setOpenCanvas }: IProps) {
             FAQ
           </a>
           <div>
-            <button
-              className="p-1 px-5 bg-[#5CB85F] text-white"
-              onClick={() => navigate("/auth/sign-up")}
-            >
-              Register
-            </button>
+            {!isLoggedIn ? (
+              <button
+                className="p-1 px-5 bg-[#5CB85F] text-white"
+                onClick={() => navigate("/auth/sign-up")}
+              >
+                Register
+              </button>
+            ) : (
+              <div className="flex flex-col space-y-2">
+                <hr />
+                <a href="/#faq" onClick={() => setOpenCanvas(false)}>
+                  Profile
+                </a>
+                <button
+                  type="button"
+                  className="text-left"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    location.reload();
+                  }}
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -62,12 +97,40 @@ function Navbar({ openCanvas, setOpenCanvas }: IProps) {
         <a href="/#services">Why Us</a>
         <a href="/#testimonial">Testimoni</a>
         <a href="/#faq">FAQ</a>
-        <button
-          onClick={() => navigate("/auth/sign-up")}
-          className="p-1 px-5 bg-[#5CB85F] text-white"
-        >
-          Register
-        </button>
+        {!isLoggedIn ? (
+          <button
+            onClick={() => navigate("/auth/sign-up")}
+            className="p-1 px-5 bg-[#5CB85F] text-white"
+          >
+            Register
+          </button>
+        ) : (
+          <div className="flex items-center space-x-2 relative">
+            <div className="py-2 px-4  bg-blue-700 flex justify-center items-center rounded-full text-white">
+              <p className="">U</p>
+            </div>
+            <RiArrowDropDownLine
+              onClick={() => setIsDropdown(!isDropdown)}
+              className="text-2xl hover:cursor-pointer"
+            />
+            {isDropdown && (
+              <div className="flex flex-col space-y-2 py-3 bg-white absolute z-50 -bottom-20 -right-28">
+                <button className="ps-4 pe-10 py-1 text-left hover:bg-slate-300">
+                  Profile
+                </button>
+                <button
+                  className="ps-4 pe-10 py-1 text-left hover:bg-slate-300"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    location.reload();
+                  }}
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
