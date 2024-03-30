@@ -1,6 +1,6 @@
 import { IMeta } from "./response";
 
-export interface ICars {
+export interface ICar {
   id?: number;
   plate: string;
   manufacture: string;
@@ -20,12 +20,12 @@ export interface ICars {
   updated_at?: string;
 }
 
-export interface ICarsResponse {
+export interface ICarResponse {
   meta: IMeta;
-  data: ICars[];
+  data: ICar[];
 }
 
-export interface ICarsParams {
+export interface ICarParams {
   search?: string;
   availableOnly?: boolean;
   size?: string;

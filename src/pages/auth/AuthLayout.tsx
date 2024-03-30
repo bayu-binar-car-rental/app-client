@@ -12,7 +12,7 @@ export default function AuthLayout() {
           <div className="space-y-10">
             <span
               onClick={() => navigate("/")}
-              className="inline py-2 px-12 bg-slate-300"
+              className="inline py-2 px-12 bg-slate-300 hover:cursor-pointer"
             />
             <Outlet />
           </div>

@@ -3,7 +3,7 @@ import Select from "../../../components/ui/Select";
 import ToggleButton from "../../../components/ui/ToggleButton";
 import rightChevron from "../../../assets/chevron-right.svg";
 
-import { ICars } from "../../../types/cars";
+import { ICar } from "../../../types/cars";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ export default function CarAddPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const payload: ICars = {
+    const payload: ICar = {
       plate: plate,
       manufacture: manufacture,
       model: model,

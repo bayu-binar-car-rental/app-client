@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../../pages/admin/AdminLayout";
-import { ICars, ICarsResponse, ICarsParams } from "../../../../types/cars";
+import { ICar, ICarResponse, ICarParams } from "../../../../types/cars";
 import CarCard from "./CarCard";
 
 interface ILoading {
-  params: ICarsParams;
+  params: ICarParams;
   isLoading: boolean;
   setIsLoading: (state: boolean) => void;
 }
@@ -14,7 +14,7 @@ export default function CarListContent({
   isLoading,
   setIsLoading,
 }: ILoading) {
-  const [cars, setCars] = useState<ICars[]>([]);
+  const [cars, setCars] = useState<ICar[]>([]);
   const [isFetchFinished, setIsFetchFinished] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function CarListContent({
         const response = await fetch(
           `${BASE_URL}/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
         );
-        const data = (await response.json()) as ICarsResponse;
+        const data = (await response.json()) as ICarResponse;
 
         if (data.meta.code !== 401) {
           await setCars(data.data);
@@ -58,7 +58,7 @@ export default function CarListContent({
       {isFetchFinished && cars.length < 1 ? (
         <p>Cars not found</p>
       ) : (
-        cars.map((car: ICars) => {
+        cars.map((car: ICar) => {
           return (
             <CarCard key={car.id} car={car} setCars={setCars} params={params} />
           );

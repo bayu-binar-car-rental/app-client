@@ -4,9 +4,9 @@ import trashIcon from "../../../../assets/fi_trash-2.svg";
 import editIcon from "../../../../assets/fi_edit.svg";
 import modalImage from "../../../../assets/img-BeepBeep.png";
 
-import { ICars } from "../../../../types/cars";
-import { ICarsParams } from "../../../../types/cars";
-import { ICarsResponse } from "../../../../types/cars";
+import { ICar } from "../../../../types/cars";
+import { ICarParams } from "../../../../types/cars";
+import { ICarResponse } from "../../../../types/cars";
 
 import getDate from "../../../../utils/getDate";
 import convertRupiah from "../../../../utils/convertRupiah";
@@ -14,9 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 interface IProps {
-  car: ICars;
-  params: ICarsParams;
-  setCars: (state: ICars[]) => void;
+  car: ICar;
+  params: ICarParams;
+  setCars: (state: ICar[]) => void;
 }
 
 export default function CarCard({ car, params, setCars }: IProps) {
@@ -54,7 +54,7 @@ export default function CarCard({ car, params, setCars }: IProps) {
       const carResponse = await fetch(
         `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
       );
-      const data = (await carResponse.json()) as ICarsResponse;
+      const data = (await carResponse.json()) as ICarResponse;
 
       if (data.meta.code !== 401) {
         setCars(data.data);
