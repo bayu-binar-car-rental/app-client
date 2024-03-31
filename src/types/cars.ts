@@ -22,7 +22,7 @@ export interface ICar {
 
 export interface ICarResponse {
   meta: IMeta;
-  data: ICar[];
+  data?: ICar[];
 }
 
 export interface ICarParams {

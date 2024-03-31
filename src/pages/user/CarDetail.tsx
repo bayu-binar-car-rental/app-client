@@ -4,24 +4,19 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import { GoCalendar, GoPeople, GoGear } from "react-icons/go";
 
 import { ICar } from "../../types/cars";
-import { setIsLoading } from "../../redux/slices/loadingSlice";
+import { setIsLoading, selectLoading } from "../../redux/slices/loadingSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import convertRupiah from "../../utils/convertRupiah";
-
-const options: string[] = ["Dengan Sopir", "Tanpa Sopir (Lepas Kunci)"];
+import CarFilter from "../../components/ui/CarFilter";
 
 export default function CarDetail() {
   const { id } = useParams();
-  const [time, setTime] = useState<string>("");
-  const [penumpang, setPenumpang] = useState<string>("");
-  const [availableAt, setAvailableAt] = useState<string>("");
-  const [select, setSelect] = useState<string>("Pilih Tipe Driver");
   const [car, setCar] = useState<ICar | null>();
   const [openDropdown, setOpenDropdown] = useState<boolean>(true);
 
-  const isLoading = useAppSelector((state) => state.loading.isLoading);
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectLoading);
 
   useEffect(() => {
     const fetchCar = async (id: string) => {
@@ -45,59 +40,9 @@ export default function CarDetail() {
   return (
     <>
       {/* Filters */}
-      <div className="mx-32 p-5 shadow-md rounded-lg bg-white absolute -top-28 right-0 left-0 z-20 space-y-2">
-        <h3 className="font-bold text-xl">Pencarianmu</h3>
-        <div className="grid grid-cols-4 gap-3">
-          <div className="space-y-1">
-            <p className="text-sm">Tipe Driver</p>
-            <div className="">
-              <select
-                value={select}
-                onChange={(e) => setSelect(e.target.value)}
-                className="text-sm p-2 bg-white border border-slate-300 focus:outline-none w-full h-full"
-              >
-                {options.map((option, index) => {
-                  return (
-                    <option key={index} value={option}>
-                      {option}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </div>
-          <div className=" space-y-1">
-            <p className="text-sm">Tanggal</p>
-            <input
-              className="text-sm p-2 border border-slate-300 focus:outline-none w-full"
-              type="date"
-              value={availableAt}
-              onChange={(e) => setAvailableAt(e.target.value)}
-              inputMode="numeric"
-              placeholder="Pilih Tanggal"
-            />
-          </div>
-          <div className=" space-y-1">
-            <p className="text-sm">Waktu Jemput</p>
-            <input
-              className="w-full text-sm p-2 border border-slate-300 focus:outline-none"
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              placeholder="Pilih Waktu"
-            />
-          </div>
-          <div className="space-y-1 w-full">
-            <p className="text-sm">Jumlah Penumpang (Optional)</p>
-            <input
-              className="w-full text-sm p-2 border border-slate-300 focus:outline-none"
-              type="number"
-              value={penumpang}
-              onChange={(e) => setPenumpang(e.target.value)}
-              placeholder="Jumlah Penumpang"
-            />
-          </div>
-        </div>
+      <div className="py-32 lg:py-1"></div>
+      <div className="mx-5 lg:mx-20 xl:mx-32 absolute -top-36 right-0 left-0 z-20">
+        <CarFilter title="Pencarianmu" />
       </div>
 
       {/* Content */}
@@ -114,7 +59,7 @@ export default function CarDetail() {
               <li>Sudah termasuk Tiket Wisata</li>
               <li>Sudah termasuk pajak</li>
             </ul>
-            <p>Include</p>
+            <p>Exclude</p>
             <ul className="list-disc ps-8 space-y-2">
               <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
               <li>

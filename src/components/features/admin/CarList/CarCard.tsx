@@ -57,7 +57,7 @@ export default function CarCard({ car, params, setCars }: IProps) {
       const data = (await carResponse.json()) as ICarResponse;
 
       if (data.meta.code !== 401) {
-        setCars(data.data);
+        setCars(data.data as ICar[]);
       } else {
         setCars([]);
       }

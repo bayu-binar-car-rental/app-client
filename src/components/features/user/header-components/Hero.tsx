@@ -40,17 +40,17 @@ export default function Hero() {
           <div>
             <button
               onClick={() => navigate("car")}
-              className={`p-2 px-5 bg-[#5CB85F] text-white ${
-                window.location.pathname !== "/" && "invisible"
+              className={`z-10 p-2 px-5 bg-[#5CB85F] text-white ${
+                window.location.pathname !== "/" && "hidden sm:invisible"
               }`}
             >
               Mulai Sewa Mobil
             </button>
           </div>
         </div>
-        <div className="basis-auto flex justify-end items-end absolute bottom-0 right-0">
+        <div className="basis-auto flex justify-end items-end absolute bottom-0 right-0 z-0">
           <img
-            className="w-11/12 z-10 overflow-x-hidden md:w-full lg:w-10/12 xl:w-11/12"
+            className="w-11/12 overflow-x-hidden md:w-10/12 xl:w-11/12"
             src={carImage}
             alt="Car Image"
           />
