@@ -3,7 +3,7 @@ import Select from "../../../components/ui/Select";
 import ToggleButton from "../../../components/ui/ToggleButton";
 import rightChevron from "../../../assets/chevron-right.svg";
 
-import { ICars } from "../../../types/cars";
+import { ICar } from "../../../types/cars";
 
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
@@ -44,7 +44,7 @@ export default function CarDetailsPage() {
           );
 
           const promise = await response.json();
-          const data = promise.data as ICars;
+          const data = promise.data as ICar;
 
           setModel(data.model);
           setManufacture(data.manufacture);
@@ -77,7 +77,7 @@ export default function CarDetailsPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const payload: ICars = {
+    const payload: ICar = {
       plate: plate,
       manufacture: manufacture,
       model: model,

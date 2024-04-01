@@ -1,4 +1,6 @@
-import LandingPage from "./pages/user/LandingPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// Admin
 import AdminLayout from "./pages/admin/AdminLayout";
 import CarListPage from "./pages/admin/Cars/CarListPage";
 import CarRentPage from "./pages/admin/Cars/CarRentPage";
@@ -6,20 +8,21 @@ import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
 import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
 import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
 
-import store from "./redux/store.ts";
-import { Provider } from "react-redux";
-
+// Auth
 import AuthLayout from "./pages/auth/AuthLayout";
-
-import UserLayout from "./components/features/user/UserLayout";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignUpPage from "./pages/auth/SignUpPage";
 import SignInPage from "./pages/auth/SignInPage";
 
+// Users
+import UserLayout from "./components/features/user/UserLayout";
+import LandingPage from "./pages/user/LandingPage";
+import CarSearch from "./pages/user/CarSearch.tsx";
+import CarList from "./pages/user/CarList.tsx";
+import CarDetail from "./pages/user/CarDetail.tsx";
+import CarCheckout from "./pages/user/CarCheckout.tsx";
+
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <UserLayout />,
     children: [
       {
@@ -28,7 +31,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/car",
-        element: <></>,
+        element: <CarSearch />,
+      },
+      {
+        path: "/car/car-list",
+        element: <CarList />,
+      },
+      {
+        path: "/car/:id",
+        element: <CarDetail />,
+      },
+      {
+        path: "/car/:id/checkout",
+        element: <CarCheckout />,
       },
     ],
   },
@@ -79,11 +94,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

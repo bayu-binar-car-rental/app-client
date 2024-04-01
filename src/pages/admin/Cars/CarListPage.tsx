@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import rightChevron from "../../../assets/chevron-right.svg";
-import { ICarsParams } from "../../../types/cars";
+import { ICarParams } from "../../../types/cars";
 import CarListContent from "../../../components/features/admin/CarList/CarListContent";
 import ToggleButton from "../../../components/ui/ToggleButton";
 
@@ -12,7 +12,7 @@ export default function CarList() {
   const [selectedCarSize, setSelectedCarSize] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [toggle, setToggle] = useState<boolean>(false);
-  const [params, setParams] = useState<ICarsParams>({ availableOnly: false });
+  const [params, setParams] = useState<ICarParams>({ availableOnly: false });
 
   const navigate = useNavigate();
 
