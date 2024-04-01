@@ -18,10 +18,9 @@ export default function CarListContent({
   const [isFetchFinished, setIsFetchFinished] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(isLoading);
-    console.log(cars.length);
-    try {
-      async function fetchCarData() {
+    const fetchCars = async () => {
+      setIsLoading(true);
+      try {
         const search = params?.search || "";
         const availableOnly = params?.availableOnly || "";
         const size = params?.size || "";
@@ -32,21 +31,20 @@ export default function CarListContent({
         const data = (await response.json()) as ICarResponse;
 
         if (data.meta.code !== 401) {
-          await setCars(data.data);
+          setCars(data.data as ICar[]);
         } else {
-          await setCars([]);
+          setCars([]);
         }
 
-        await setIsLoading(false);
-        await setIsFetchFinished(true);
+        setIsFetchFinished(true);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setIsLoading(false);
       }
+    };
 
-      fetchCarData();
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+    fetchCars();
   }, [params]);
 
   if (isLoading) {
