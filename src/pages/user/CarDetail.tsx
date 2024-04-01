@@ -91,7 +91,10 @@ export default function CarDetail() {
             )}
           </div>
           <div className="flex justify-end mt-4">
-            <button className="text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white">
+            <button
+              className="text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
+              onClick={() => navigate("checkout", { state: car })}
+            >
               Lanjutkan Pembayaran
             </button>
           </div>
@@ -127,7 +130,10 @@ export default function CarDetail() {
                   </h3>
                 </div>
                 <div className="mt-4">
-                  <button className="w-full text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white">
+                  <button
+                    className="w-full text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
+                    onClick={() => navigate("checkout", { state: car })}
+                  >
                     Lanjutkan Pembayaran
                   </button>
                 </div>

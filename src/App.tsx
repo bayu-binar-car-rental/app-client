@@ -19,6 +19,7 @@ import LandingPage from "./pages/user/LandingPage";
 import CarSearch from "./pages/user/CarSearch.tsx";
 import CarList from "./pages/user/CarList.tsx";
 import CarDetail from "./pages/user/CarDetail.tsx";
+import CarCheckout from "./pages/user/CarCheckout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/car/:id",
         element: <CarDetail />,
+      },
+      {
+        path: "/car/:id/checkout",
+        element: <CarCheckout />,
       },
     ],
   },

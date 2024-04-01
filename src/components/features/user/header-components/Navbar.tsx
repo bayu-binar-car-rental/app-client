@@ -28,9 +28,9 @@ export default function Navbar() {
 
         const data = await response.json();
         if (data.message === "Token Expired. Please login") {
-          console.log("Token Expired. Please login");
           localStorage.removeItem("token");
           dispatch(setToken());
+          alert(data.message);
 
           return;
         }

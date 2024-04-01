@@ -1,5 +1,7 @@
 import { GoPeople } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+
 import Title from "./Title";
 import {
   setDriverType,
@@ -8,8 +10,6 @@ import {
   setTotalPassenger,
   selectCarFilters,
 } from "../../redux/slices/carFilterSlice";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 interface IProps {
   title?: string;
@@ -24,24 +24,20 @@ export default function CarFilter({ title, variant }: IProps) {
   const { driverType, rentDate, pickupTime, totalPassenger } =
     useAppSelector(selectCarFilters);
 
-  useEffect(() => {
-    console.log(rentDate);
-    console.log(pickupTime);
-  }, [rentDate, pickupTime]);
-
   return (
     <>
-      <div className="p-5 bg-white border rounded-md shadow-md">
+      <div className="p-5 bg-white border rounded-md shadow-sm">
         {title && <Title variant="h5" title={title} />}
         <div className="grid grid-rows-2 lg:grid-flow-col gap-x-2 gap-y-1 lg:gap-y-0">
+          {/* Tipe Driver */}
           <div className="flex items-center">
             <p className="text-sm">Tipe Driver</p>
           </div>
           <select
             value={driverType}
             onChange={(e) => dispatch(setDriverType(e.target.value))}
-            className={`p-1 h-full w-full rounded-sm bg-white focus:outline-none border ${
-              variant !== "submit" && "bg-slate-400"
+            className={`p-1 h-full w-full rounded-sm focus:outline-none border ${
+              variant !== "submit" ? "bg-slate-400" : "bg-white"
             }`}
             disabled={variant !== "submit"}
           >
@@ -51,6 +47,8 @@ export default function CarFilter({ title, variant }: IProps) {
               </option>
             ))}
           </select>
+
+          {/* Tanggal */}
           <div className="flex items-center">
             <p className="text-sm">Tanggal</p>
           </div>
@@ -60,10 +58,12 @@ export default function CarFilter({ title, variant }: IProps) {
             value={rentDate}
             onChange={(e) => dispatch(setRentDate(e.target.value))}
             disabled={variant !== "submit"}
-            className={`p-1 bg-white w-full focus:outline-none border ${
+            className={`p-1 w-full focus:outline-none border ${
               variant !== "submit" && "bg-slate-400 text-gray-600"
             }`}
           />
+
+          {/* Waktu Jemput/Ambil */}
           <div className="flex items-center">
             <p className="text-sm">Waktu Jemput/Ambil</p>
           </div>
@@ -72,10 +72,12 @@ export default function CarFilter({ title, variant }: IProps) {
             value={pickupTime}
             onChange={(e) => dispatch(setPickupTime(e.target.value))}
             disabled={variant !== "submit"}
-            className={`p-1 bg-white w-full focus:outline-none border ${
+            className={`p-1  w-full focus:outline-none border ${
               variant !== "submit" && "bg-slate-400 text-gray-600"
             }`}
           />
+
+          {/* Jumlah Penumpang */}
           <div className="flex items-center">
             <p className="text-sm">Jumlah Penumpang (opsional)</p>
           </div>
@@ -90,13 +92,14 @@ export default function CarFilter({ title, variant }: IProps) {
               onChange={(e) => dispatch(setTotalPassenger(e.target.value))}
               placeholder="Jumlah Penumpang"
               disabled={variant !== "submit"}
-              className={`bg-white w-full focus:outline-none ${
+              className={` w-full focus:outline-none ${
                 variant !== "submit" && "bg-slate-400"
               }`}
             />
             <GoPeople />
           </div>
 
+          {/* Button */}
           {variant === "submit" ? (
             <>
               <p></p>

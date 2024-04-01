@@ -3,6 +3,7 @@ import { setIsToggle } from "../../../../../redux/slices/toggleSlice";
 import { useAppSelector, useAppDispatch } from "../../../../../redux/hooks";
 
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useEffect } from "react";
 
 interface IProps {
   isLoggedIn: string;
@@ -14,6 +15,10 @@ export default function LaptopNavbar({ isLoggedIn, username }: IProps) {
 
   const isToggle = useAppSelector((state) => state.toggle.isToggle);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
   return (
     <>
