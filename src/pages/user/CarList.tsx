@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { GoCalendar, GoPeople, GoGear } from "react-icons/go";
 
 import { ICar } from "../../types/cars";
 import convertRupiah from "../../utils/convertRupiah";
 
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { selectCarFilters } from "../../redux/slices/carFilterSlice";
 import { setIsLoading, selectLoading } from "../../redux/slices/loadingSlice";
 import CarFilter from "../../components/ui/CarFilter";
 import Title from "../../components/ui/Title";
@@ -17,14 +16,33 @@ export default function CarList() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectLoading);
-  const { totalPassenger } = useAppSelector(selectCarFilters);
+
+  const location = useLocation();
+  const { totalPassenger } = location.state;
+
+  const handleChooseCar = (carId: number) => {
+    try {
+      const carFilters = JSON.parse(
+        localStorage.getItem("carFilters") as string
+      );
+      if (carFilters.paymentMethod) {
+        delete carFilters.paymentMethod;
+
+        localStorage.setItem("carFilters", JSON.stringify(carFilters));
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      navigate(`/car/${carId}`);
+    }
+  };
 
   useEffect(() => {
     const fetchCars = async () => {
       dispatch(setIsLoading(true));
       try {
         const response = await fetch(
-          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=true&capacity=${totalPassenger}`
+          `http://localhost:3000/api/v1/cars?availableOnly=true&capacity=${totalPassenger}`
         );
 
         const data = await response.json();
@@ -96,7 +114,7 @@ export default function CarList() {
                         </div>
                         <div className="mt-auto">
                           <button
-                            onClick={() => navigate(`/car/${car.id}`)}
+                            onClick={() => handleChooseCar(car.id as number)}
                             className="w-full text-sm font-bold p-2 rounded-sm px-5 bg-[#5CB85F] text-white"
                           >
                             Pilih Mobil

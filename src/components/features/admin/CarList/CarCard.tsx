@@ -43,7 +43,7 @@ export default function CarCard({ car, params, setCars }: IProps) {
       const size = params?.size || "";
 
       const response = await fetch(
-        `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${selectedId}`,
+        `http://localhost:3000/api/v1/cars/${selectedId}`,
         { method: "DELETE" }
       );
 
@@ -52,7 +52,7 @@ export default function CarCard({ car, params, setCars }: IProps) {
       setOpenModal(false);
 
       const carResponse = await fetch(
-        `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
+        `http://localhost:3000/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
       );
       const data = (await carResponse.json()) as ICarResponse;
 

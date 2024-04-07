@@ -33,9 +33,9 @@ export default function MobileNavbar({ isLoggedIn, username }: IProps) {
             <Title title="BCR" variant="h6" />
             <RxCross2 onClick={() => dispatch(setIsToggle(false))} />
           </div>
-          {isLoggedIn && (
+          {isLoggedIn && username && (
             <div className="py-2 px-4 bg-blue-700 flex justify-center items-center rounded-full text-white">
-              <p className="">{username}</p>
+              <p className="">{username[0].toUpperCase()}</p>
             </div>
           )}
           <a href="/#features" onClick={() => dispatch(setIsToggle(false))}>

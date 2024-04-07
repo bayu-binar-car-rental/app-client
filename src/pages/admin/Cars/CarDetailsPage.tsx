@@ -40,7 +40,7 @@ export default function CarDetailsPage() {
         console.log("Fetching car data...");
         const fetchCar = async () => {
           const response = await fetch(
-            `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${carId}`
+            `http://localhost:3000/api/v1/cars/${carId}`
           );
 
           const promise = await response.json();
@@ -102,7 +102,7 @@ export default function CarDetailsPage() {
         if (carId) {
           console.log("PATCH");
           const response = await fetch(
-            `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${carId}`,
+            `http://localhost:3000/api/v1/cars/${carId}`,
             {
               method: "PATCH",
               headers: { "Content-Type": "application/json" },
@@ -115,14 +115,11 @@ export default function CarDetailsPage() {
           await navigate(-1);
         } else {
           console.log("INSERT");
-          const response = await fetch(
-            "https://binar-car-rental-api-bayu.fly.dev/api/v1/cars",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            }
-          );
+          const response = await fetch("http://localhost:3000/api/v1/cars", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
 
           console.log(response);
           console.log("Car Added");

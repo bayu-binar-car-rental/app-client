@@ -1,15 +1,8 @@
 import { GoPeople } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 import Title from "./Title";
-import {
-  setDriverType,
-  setRentDate,
-  setPickupTime,
-  setTotalPassenger,
-  selectCarFilters,
-} from "../../redux/slices/carFilterSlice";
+import { useEffect, useState } from "react";
 
 interface IProps {
   title?: string;
@@ -17,12 +10,38 @@ interface IProps {
 }
 
 export default function CarFilter({ title, variant }: IProps) {
-  const options: string[] = ["Dengan Sopir", "Tanpa Sopir (Lepas Kunci)"];
+  const options: string[] = ["Tanpa Sopir (Lepas Kunci)", "Dengan Sopir"];
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { driverType, rentDate, pickupTime, totalPassenger } =
-    useAppSelector(selectCarFilters);
+  const [driverType, setDriverType] = useState<string>("0");
+  const [rentDate, setRentDate] = useState<string>("");
+  const [pickupTime, setPickupTime] = useState<string>("");
+  const [totalPassenger, setTotalPassenger] = useState<string>("");
+
+  useEffect(() => {
+    if (localStorage.getItem("carFilters")) {
+      const carFilters = JSON.parse(
+        localStorage.getItem("carFilters") as string
+      );
+
+      setDriverType(carFilters.driverType);
+      setRentDate(carFilters.rentDate);
+      setPickupTime(carFilters.pickupTime);
+      setTotalPassenger(carFilters.totalPassenger);
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    const state = {
+      driverType: driverType,
+      rentDate: rentDate,
+      pickupTime: pickupTime,
+      totalPassenger: totalPassenger,
+    };
+
+    localStorage.setItem("carFilters", JSON.stringify(state));
+    navigate("car-list", { state: { totalPassenger: totalPassenger } });
+  };
 
   return (
     <>
@@ -35,14 +54,14 @@ export default function CarFilter({ title, variant }: IProps) {
           </div>
           <select
             value={driverType}
-            onChange={(e) => dispatch(setDriverType(e.target.value))}
+            onChange={(e) => setDriverType(e.target.value)}
             className={`p-1 h-full w-full rounded-sm focus:outline-none border ${
               variant !== "submit" ? "bg-slate-400" : "bg-white"
             }`}
             disabled={variant !== "submit"}
           >
             {options.map((option, index) => (
-              <option key={index} value={option} className="text-sm">
+              <option key={index} value={index} className="text-sm">
                 {option}
               </option>
             ))}
@@ -52,16 +71,18 @@ export default function CarFilter({ title, variant }: IProps) {
           <div className="flex items-center">
             <p className="text-sm">Tanggal</p>
           </div>
-          <input
-            type="date"
-            placeholder="Pilih Tanggal"
-            value={rentDate}
-            onChange={(e) => dispatch(setRentDate(e.target.value))}
-            disabled={variant !== "submit"}
-            className={`p-1 w-full focus:outline-none border ${
-              variant !== "submit" && "bg-slate-400 text-gray-600"
-            }`}
-          />
+          <div>
+            <input
+              type="date"
+              placeholder="Pilih Tanggal"
+              value={rentDate}
+              onChange={(e) => setRentDate(e.target.value)}
+              disabled={variant !== "submit"}
+              className={`p-1 w-full focus:outline-none border ${
+                variant !== "submit" && "bg-slate-400 text-gray-600"
+              }`}
+            />
+          </div>
 
           {/* Waktu Jemput/Ambil */}
           <div className="flex items-center">
@@ -70,7 +91,7 @@ export default function CarFilter({ title, variant }: IProps) {
           <input
             type="time"
             value={pickupTime}
-            onChange={(e) => dispatch(setPickupTime(e.target.value))}
+            onChange={(e) => setPickupTime(e.target.value)}
             disabled={variant !== "submit"}
             className={`p-1  w-full focus:outline-none border ${
               variant !== "submit" && "bg-slate-400 text-gray-600"
@@ -89,7 +110,7 @@ export default function CarFilter({ title, variant }: IProps) {
             <input
               type="number"
               value={totalPassenger}
-              onChange={(e) => dispatch(setTotalPassenger(e.target.value))}
+              onChange={(e) => setTotalPassenger(e.target.value)}
               placeholder="Jumlah Penumpang"
               disabled={variant !== "submit"}
               className={` w-full focus:outline-none ${
@@ -104,7 +125,7 @@ export default function CarFilter({ title, variant }: IProps) {
             <>
               <p></p>
               <button
-                onClick={() => navigate("car-list")}
+                onClick={handleSubmit}
                 className="py-1 px-5 bg-green-500 text-white rounded-sm font-bold"
               >
                 Cari Mobil

@@ -1,25 +1,28 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Admin
-import AdminLayout from "./pages/admin/AdminLayout";
-import CarListPage from "./pages/admin/Cars/CarListPage";
-import CarRentPage from "./pages/admin/Cars/CarRentPage";
-import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
-import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
-import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
+import {
+  AdminLayout,
+  CarListPage,
+  CarRentPage,
+  CarDetailsPage,
+  DashboardPage,
+  AnalyticsPage,
+} from "./pages/admin";
 
 // Auth
-import AuthLayout from "./pages/auth/AuthLayout";
-import SignUpPage from "./pages/auth/SignUpPage";
-import SignInPage from "./pages/auth/SignInPage";
+import { AuthLayout, SignUpPage, SignInPage } from "./pages/auth";
 
 // Users
-import UserLayout from "./components/features/user/UserLayout";
-import LandingPage from "./pages/user/LandingPage";
-import CarSearch from "./pages/user/CarSearch.tsx";
-import CarList from "./pages/user/CarList.tsx";
-import CarDetail from "./pages/user/CarDetail.tsx";
-import CarCheckout from "./pages/user/CarCheckout.tsx";
+import {
+  UserLayout,
+  LandingPage,
+  CarSearch,
+  CarList,
+  CarDetail,
+  CarCheckout,
+  CarPayment,
+} from "./pages/user";
 
 const router = createBrowserRouter([
   {
@@ -42,8 +45,12 @@ const router = createBrowserRouter([
         element: <CarDetail />,
       },
       {
-        path: "/car/:id/checkout",
+        path: "/payment",
         element: <CarCheckout />,
+      },
+      {
+        path: "/payment/:paymentId",
+        element: <CarPayment />,
       },
     ],
   },

@@ -27,7 +27,7 @@ export default function Input({
         formData.append("image", files[0]);
 
         const response = await fetch(
-          "https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/upload",
+          "http://localhost:3000/api/v1/cars/upload",
           {
             method: "POST",
             body: formData,

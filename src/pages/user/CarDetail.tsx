@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { setIsLoading, selectLoading } from "../../redux/slices/loadingSlice";
+
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoChevronDownOutline } from "react-icons/io5";
 import { GoCalendar, GoPeople, GoGear } from "react-icons/go";
 
 import { ICar } from "../../types/cars";
-import { setIsLoading, selectLoading } from "../../redux/slices/loadingSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import convertRupiah from "../../utils/convertRupiah";
 import CarFilter from "../../components/ui/CarFilter";
+import convertRupiah from "../../utils/convertRupiah";
 
 export default function CarDetail() {
   const { id } = useParams();
@@ -22,7 +24,7 @@ export default function CarDetail() {
     const fetchCar = async (id: string) => {
       try {
         const response = await fetch(
-          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${+id}`
+          `http://localhost:3000/api/v1/cars/${+id}`
         );
 
         const data = await response.json();
@@ -40,9 +42,16 @@ export default function CarDetail() {
   return (
     <>
       {/* Filters */}
-      <div className="py-32 lg:py-1"></div>
-      <div className="mx-5 lg:mx-20 xl:mx-32 absolute -top-36 right-0 left-0 z-20">
-        <CarFilter title="Pencarianmu" />
+      <div className="py-32 lg:py-3"></div>
+      <div className="mx-5 space-y-5 lg:mx-20 xl:mx-32 absolute -top-48 right-0 left-0 z-20">
+        <div className="flex items-center space-x-2">
+          <FaArrowLeftLong
+            className="text-xl hover:cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+          <p className="text-lg font-bold">Detail</p>
+        </div>{" "}
+        <CarFilter title="Detail Pesananmu" />
       </div>
 
       {/* Content */}
@@ -93,7 +102,7 @@ export default function CarDetail() {
           <div className="flex justify-end mt-4">
             <button
               className="text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
-              onClick={() => navigate("checkout", { state: car })}
+              onClick={() => navigate("/payment", { state: car })}
             >
               Lanjutkan Pembayaran
             </button>
@@ -132,7 +141,7 @@ export default function CarDetail() {
                 <div className="mt-4">
                   <button
                     className="w-full text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
-                    onClick={() => navigate("checkout", { state: car })}
+                    onClick={() => navigate("/checkout", { state: car })}
                   >
                     Lanjutkan Pembayaran
                   </button>

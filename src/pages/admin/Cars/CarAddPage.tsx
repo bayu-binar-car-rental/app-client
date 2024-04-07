@@ -55,7 +55,7 @@ export default function CarAddPage() {
       const insertCar = async () => {
         const response = await fetch(
           //   "http://localhost:3000/api/v1/cars",
-          "https://binar-car-rental-api-bayu.fly.dev/api/v1/cars",
+          "http://localhost:3000/api/v1/cars",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
