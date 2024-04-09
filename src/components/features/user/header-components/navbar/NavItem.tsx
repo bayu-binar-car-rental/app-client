@@ -13,7 +13,7 @@ export default function NavItem({
 }: INavItemProps) {
   return (
     <>
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         {variant === "link" ? (
           <a href={to} onClick={onclick}>
             {label}
