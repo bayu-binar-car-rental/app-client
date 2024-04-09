@@ -5,6 +5,7 @@ export interface IUserState {
   id: number;
   username: string;
   email: string;
+  image: string | null;
   role: string;
 }
 
@@ -12,6 +13,7 @@ const initialState: IUserState = {
   id: 0,
   username: "",
   email: "",
+  image: null,
   role: "",
 };
 
@@ -20,10 +22,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.id = action.payload.id;
-      state.username = action.payload.username;
-      state.email = action.payload.email;
-      state.role = action.payload.role;
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
   },
 });

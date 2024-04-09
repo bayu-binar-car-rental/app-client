@@ -57,10 +57,6 @@ export default function CarList() {
     fetchCars();
   }, []);
 
-  useEffect(() => {
-    console.log(cars);
-  }, [cars]);
-
   return (
     <>
       {/* Filters */}

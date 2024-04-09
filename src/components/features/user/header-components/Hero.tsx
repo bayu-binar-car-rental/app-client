@@ -1,22 +1,23 @@
 import HeroImage from "./hero/HeroImage";
 import HeroContent from "./hero/HeroContent";
+import { useLocation } from "react-router-dom";
 
 export default function Hero() {
-  const curPath = window.location.pathname;
+  const { pathname } = useLocation();
 
   return (
     <>
       {/* Padding for blank content */}
       <div
-        className={`py-20 border ${
-          curPath !== "/" && curPath !== "/car" ? "visible" : "hidden"
+        className={`py-20 ${
+          pathname !== "/" && pathname !== "/car" ? "visible" : "hidden"
         }`}
       />
 
       {/* Content */}
       <div
         className={`lg:flex ${
-          curPath !== "/" && curPath !== "/car" ? "lg:hidden" : "visible"
+          pathname !== "/" && pathname !== "/car" ? "lg:hidden" : "visible"
         }`}
       >
         <HeroContent />

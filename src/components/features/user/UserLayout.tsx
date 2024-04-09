@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { useAppSelector } from "../../../redux/hooks";
 import ScrollToTop from "../../ui/ScrollToTop";
+import { useAppSelector } from "../../../redux/hooks";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -10,7 +10,11 @@ export default function UserLayout() {
   return (
     <>
       <ScrollToTop />
-      <div className={`space-y-10 h-screen ${isToggle && "overflow-hidden"}`}>
+      <div
+        className={`space-y-10 h-screen ${
+          isToggle && "overflow-clip bg-blend-darken"
+        }`}
+      >
         <Header />
 
         <div className="container-xl space-y-10 px-5 md:px-10 lg:px-20 xl:px-32 relative">

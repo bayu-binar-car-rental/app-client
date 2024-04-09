@@ -27,6 +27,7 @@ import {
 const router = createBrowserRouter([
   {
     element: <UserLayout />,
+    errorElement: <div>Page not found</div>,
     children: [
       {
         path: "/",
