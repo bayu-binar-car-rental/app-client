@@ -1,11 +1,11 @@
 // Imports
 import { useNavigate } from "react-router-dom";
-import { setIsToggle } from "../../../../../redux/slices/toggleSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+import { setToggleProfileCanvas } from "../../../../../redux/slices/toggleSlice";
 
 import Button from "../../../../ui/Button";
 import Avatar from "../../../../ui/Avatar";
-import ProfileCanvas from "../../../../ui/ProfileCanvas";
+import ProfileCanvas from "./ProfileCanvas";
 
 export default function NavAuth() {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
@@ -16,7 +16,7 @@ export default function NavAuth() {
     <div>
       {isLoggedIn ? (
         <>
-          <button onClick={() => dispatch(setIsToggle(true))}>
+          <button onClick={() => dispatch(setToggleProfileCanvas(true))}>
             <Avatar />
           </button>
           <ProfileCanvas />

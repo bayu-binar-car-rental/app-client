@@ -1,18 +1,21 @@
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "../../ui/ScrollToTop";
 import { useAppSelector } from "../../../redux/hooks";
+import { selectToggle } from "../../../redux/slices/toggleSlice";
 
 import Header from "./Header";
 import Footer from "./Footer";
 
 export default function UserLayout() {
-  const isToggle = useAppSelector((state) => state.toggle.isToggle);
+  const { toggleNavbarCanvas, toggleProfileCanvas } =
+    useAppSelector(selectToggle);
+
   return (
     <>
       <ScrollToTop />
       <div
-        className={`space-y-10 h-screen ${
-          isToggle && "overflow-clip bg-blend-darken"
+        className={`space-y-10 h-screen group ${
+          toggleNavbarCanvas || toggleProfileCanvas ? "overflow-clip" : ""
         }`}
       >
         <Header />
