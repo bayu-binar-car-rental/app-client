@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 interface IProps {
   variant?: "primary" | "secondary";
   type?: "submit" | "reset" | "button" | undefined;
-  onclick?: () => void;
+  onclick?: (state?: any) => void;
 }
 
 export default function Button({
