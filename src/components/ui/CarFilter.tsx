@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import Title from "./Title";
 import MyDate from "../../utils/MyDate";
-import React, { useEffect, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { setToggleNavbarCanvas } from "../../redux/slices/toggleSlice";
+import React, { useState } from "react";
 import Button from "./Button";
+import useCarFilters from "../../hooks/useCarFilters";
 
 interface IProps {
   title?: string;
@@ -14,36 +13,20 @@ interface IProps {
 }
 
 export default function CarFilter({ title, variant }: IProps) {
-  const options: string[] = ["Tanpa Sopir (Lepas Kunci)", "Dengan Sopir"];
-  const myDate = new MyDate();
-  console.log(myDate.today());
-
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const [driverType, setDriverType] = useState<string | undefined>(undefined);
-  const [rentDate, setRentDate] = useState<string>("");
-  const [pickupTime, setPickupTime] = useState<string>("");
-  const [totalPassenger, setTotalPassenger] = useState<string>("");
+  const options: string[] = ["Tanpa Sopir (Lepas Kunci)", "Dengan Sopir"];
 
   const [focus, setFocus] = useState<boolean>(false);
-
-  useEffect(() => {
-    dispatch(setToggleNavbarCanvas(false));
-  }, [driverType, rentDate, pickupTime]);
-
-  useEffect(() => {
-    if (localStorage.getItem("carFilters")) {
-      const carFilters = JSON.parse(
-        localStorage.getItem("carFilters") as string
-      );
-
-      setDriverType(carFilters.driverType);
-      setRentDate(carFilters.rentDate);
-      setPickupTime(carFilters.pickupTime);
-      setTotalPassenger(carFilters.totalPassenger);
-    }
-  }, []);
+  const {
+    driverType,
+    setDriverType,
+    rentDate,
+    setRentDate,
+    pickupTime,
+    setPickupTime,
+    totalPassenger,
+    setTotalPassenger,
+  } = useCarFilters();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -98,7 +81,7 @@ export default function CarFilter({ title, variant }: IProps) {
               type="date"
               placeholder="Pilih Tanggal"
               value={rentDate}
-              min={myDate.today()}
+              min={new MyDate().today()}
               onChange={(e) => setRentDate(e.target.value)}
               disabled={variant !== "submit"}
               className={`p-2 text-sm h-full w-full rounded-md focus:outline-hijau hover:cursor-pointer border ${
