@@ -22,7 +22,7 @@ export default function CarSearch() {
     <>
       <Canvas />
       <div className="py-32 lg:py-3" />
-      <div className="mx-5 lg:mx-20 xl:mx-40 absolute -top-28 sm:-top-[9rem] right-0 left-0 z-30">
+      <div className="mx-5 lg:mx-20 xl:mx-40 absolute -top-28 sm:-top-[8.5rem] right-0 left-0 z-30">
         {!isLoading && (
           <>
             <CarFilter variant="submit" />
