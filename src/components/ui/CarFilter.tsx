@@ -151,7 +151,7 @@ export default function CarFilter({ title, variant }: IProps) {
             <Button type="submit">Cari Mobil</Button>
           ) : (
             variant === "edit" && (
-              <Button variant="secondary" onclick={() => navigate(-1)}>
+              <Button variant="secondary" onclick={() => navigate("/car")}>
                 Edit
               </Button>
             )
