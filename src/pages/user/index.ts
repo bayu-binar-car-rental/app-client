@@ -1,7 +1,7 @@
 export { default as UserLayout } from "../../components/features/user/UserLayout";
 export { default as LandingPage } from "./LandingPage";
-export { default as CarSearch } from "./CarSearch";
-export { default as CarList } from "./CarList";
+export { default as CarSearchPage } from "./CarSearchPage";
+export { default as CarListPage } from "./CarListPage";
 export { default as CarDetailPage } from "./CarDetailPage";
-export { default as CarCheckout } from "./CarCheckout";
-export { default as CarPayment } from "./CarPayment";
+export { default as CarCheckoutPage } from "./CarCheckoutPage";
+export { default as CarPaymentPage } from "./CarPaymentPage";
