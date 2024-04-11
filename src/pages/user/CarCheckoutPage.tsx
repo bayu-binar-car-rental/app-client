@@ -11,7 +11,7 @@ import CarFilter from "../../components/ui/CarFilter";
 import { ITransactions } from "../../types/transaction";
 import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
 
-export default function CarCheckout() {
+export default function CarCheckoutPage() {
   const [selectedPayment, setSelectedPayment] = useState<number>(0);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const [totalPrice, setTotalPrice] = useState<number>();

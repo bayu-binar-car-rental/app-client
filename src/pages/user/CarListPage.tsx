@@ -7,7 +7,7 @@ import CarFilter from "../../components/ui/CarFilter";
 import CarNotFound from "../../components/ui/CarNotFound";
 import CarCard from "../../components/ui/CarCard/CarCard";
 
-export default function CarList() {
+export default function CarListPage() {
   const isLoading = useAppSelector(selectLoading);
   const { cars } = useFetchCars();
 

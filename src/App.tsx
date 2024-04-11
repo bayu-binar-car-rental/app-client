@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Admin
 import {
   AdminLayout,
-  CarListPage,
   CarRentPage,
   CarDetailsPage,
   DashboardPage,
@@ -17,11 +16,11 @@ import { AuthLayout, SignUpPage, SignInPage } from "./pages/auth";
 import {
   UserLayout,
   LandingPage,
-  CarSearch,
-  CarList,
+  CarSearchPage,
+  CarListPage,
   CarDetailPage,
-  CarCheckout,
-  CarPayment,
+  CarCheckoutPage,
+  CarPaymentPage,
 } from "./pages/user";
 
 const router = createBrowserRouter([
@@ -35,11 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/car",
-        element: <CarSearch />,
+        element: <CarSearchPage />,
       },
       {
         path: "/car/car-list",
-        element: <CarList />,
+        element: <CarListPage />,
       },
       {
         path: "/car/:id",
@@ -47,11 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/payment",
-        element: <CarCheckout />,
+        element: <CarCheckoutPage />,
       },
       {
         path: "/payment/:paymentId",
-        element: <CarPayment />,
+        element: <CarPaymentPage />,
       },
     ],
   },

@@ -39,7 +39,7 @@ function PaymentInstructions() {
   );
 }
 
-export default function CarPayment() {
+export default function CarPaymentPage() {
   const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
   const { paymentId } = useParams();
 

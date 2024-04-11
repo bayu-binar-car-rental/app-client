@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { useEffect } from "react";
 import Canvas from "../../components/ui/Canvas";
 
-export default function CarSearch() {
+export default function CarSearchPage() {
   const isLoading = useAppSelector(selectLoading);
   const dispatch = useAppDispatch();
 
