@@ -25,7 +25,7 @@ export default function CarCard(car: ICar) {
 
   return (
     <div className="flex flex-col rounded-md shadow-md border overflow-clip">
-      <div className="bg-gray-500">
+      <div>
         <CarImage src={car.image} />
       </div>
       <div className="flex-auto">
