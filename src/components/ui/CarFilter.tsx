@@ -51,18 +51,20 @@ export default function CarFilter({ title, variant }: IProps) {
         {title && <Title variant="h5" title={title} />}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-rows-2 lg:grid-flow-col gap-x-3 gap-y-0 lg:gap-y-0 text-sm"
+          className="grid grid-rows-2 lg:grid-flow-col gap-x-3 gap-y-1 lg:gap-y-0 text-sm"
         >
           {/* Tipe Driver */}
-          <div className="flex items-end pb-2">
+          <div className="flex items-end md:pb-2">
             <p className="text-sm">Tipe Driver</p>
           </div>
           <select
             value={driverType}
             disabled={variant !== "submit"}
             onChange={(e) => setDriverType(e.target.value)}
-            className={`p-2 text-sm h-full w-full block rounded-md border focus:outline-hijau hover:cursor-pointer ${
-              variant !== "submit" ? "bg-slate-400" : "bg-white"
+            className={`p-2 text-sm h-full w-full block rounded-md border focus:outline-hijau ${
+              variant !== "submit"
+                ? "bg-[#94a3b8]"
+                : "bg-white hover:cursor-pointer"
             }`}
           >
             {options.map((option, index) => (
@@ -73,7 +75,7 @@ export default function CarFilter({ title, variant }: IProps) {
           </select>
 
           {/* Tanggal */}
-          <div className="flex items-end pb-2">
+          <div className="flex items-end md:pb-2">
             <p className="text-sm">Tanggal</p>
           </div>
           <div>
@@ -84,14 +86,16 @@ export default function CarFilter({ title, variant }: IProps) {
               min={new MyDate().today()}
               onChange={(e) => setRentDate(e.target.value)}
               disabled={variant !== "submit"}
-              className={`p-2 text-sm h-full w-full rounded-md focus:outline-hijau hover:cursor-pointer border ${
-                variant !== "submit" && "bg-slate-400 text-gray-600"
+              className={`p-2 text-sm h-full w-full rounded-md focus:outline-hijau border ${
+                variant !== "submit"
+                  ? "bg-slate-400 text-gray-600"
+                  : "hover:cursor-pointer"
               }`}
             />
           </div>
 
           {/* Waktu Jemput/Ambil */}
-          <div className="flex items-end pb-2">
+          <div className="flex items-end md:pb-2">
             <p className="text-sm">Waktu Jemput/Ambil</p>
           </div>
           <input
@@ -100,12 +104,14 @@ export default function CarFilter({ title, variant }: IProps) {
             onChange={(e) => setPickupTime(e.target.value)}
             disabled={variant !== "submit"}
             className={`p-2  w-full rounded-md focus:outline-hijau border ${
-              variant !== "submit" && "bg-slate-400 text-gray-600"
+              variant !== "submit"
+                ? "bg-slate-400 text-gray-600"
+                : "hover:cursor-pointer"
             }`}
           />
 
           {/* Jumlah Penumpang */}
-          <div className="flex items-end pb-2">
+          <div className="flex items-end md:pb-2">
             <p className="text-sm">Jumlah Penumpang (opsional)</p>
           </div>
           <div
