@@ -19,7 +19,7 @@ import {
   LandingPage,
   CarSearch,
   CarList,
-  CarDetail,
+  CarDetailPage,
   CarCheckout,
   CarPayment,
 } from "./pages/user";
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/car/:id",
-        element: <CarDetail />,
+        element: <CarDetailPage />,
       },
       {
         path: "/payment",

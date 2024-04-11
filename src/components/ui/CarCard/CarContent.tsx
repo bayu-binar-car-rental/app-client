@@ -20,7 +20,7 @@ export default function CarContent({ car, onclick }: ICarContentProps) {
         variant="h5"
       />
       <p className="grow">{car.description}</p>
-      <CarSpecs {...car} />
+      <CarSpecs car={{ ...car }} />
       <Button onclick={() => onclick(car.id)}>Pilih Mobil</Button>
     </div>
   );

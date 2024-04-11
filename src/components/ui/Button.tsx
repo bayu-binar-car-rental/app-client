@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 
 interface IProps {
   variant?: "primary" | "secondary";
+  fullWidth?: boolean;
   type?: "submit" | "reset" | "button" | undefined;
   onclick?: (state?: any) => void;
 }
@@ -10,6 +11,7 @@ export default function Button({
   children,
   variant = "primary",
   type,
+  fullWidth,
   onclick,
 }: PropsWithChildren<IProps>) {
   return (
@@ -20,7 +22,7 @@ export default function Button({
         variant === "primary"
           ? "bg-hijau text-white"
           : "border-2 border-biru text-biru"
-      }`}
+      } ${fullWidth && "w-full"}`}
     >
       {children}
     </button>

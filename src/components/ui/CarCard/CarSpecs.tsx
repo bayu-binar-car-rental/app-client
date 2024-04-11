@@ -1,7 +1,11 @@
 import { GoCalendar, GoGear, GoPeople } from "react-icons/go";
 import { ICar } from "../../../types/cars";
 
-export default function CarSpecs(car: ICar) {
+interface ICarSpecsProps {
+  car: ICar;
+}
+
+export default function CarSpecs({ car }: ICarSpecsProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-3">
