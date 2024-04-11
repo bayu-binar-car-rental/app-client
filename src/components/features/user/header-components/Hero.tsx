@@ -16,8 +16,8 @@ export default function Hero() {
 
       {/* Content */}
       <div
-        className={`lg:flex ${
-          pathname !== "/" && pathname !== "/car" ? "lg:hidden" : "visible"
+        className={`flex flex-col lg:flex-row ${
+          pathname !== "/" && pathname !== "/car" ? "hidden" : "visible"
         }`}
       >
         <HeroContent />

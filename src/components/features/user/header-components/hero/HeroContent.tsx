@@ -24,7 +24,7 @@ export default function HeroContent() {
       </p>
       <div
         className={`${
-          window.location.pathname !== "/" && "invisible sm:invisible"
+          window.location.pathname !== "/" && "hidden md:block md:invisible"
         }`}
       >
         <Button onclick={handleNavigation}>Mulai Sewa Mobil</Button>
