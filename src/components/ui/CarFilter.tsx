@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Title from "./Title";
 import MyDate from "../../utils/MyDate";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import useCarFilters from "../../hooks/useCarFilters";
 
@@ -26,7 +26,12 @@ export default function CarFilter({ title, variant }: IProps) {
     setPickupTime,
     totalPassenger,
     setTotalPassenger,
+    isFilterValid,
   } = useCarFilters();
+
+  useEffect(() => {
+    console.log(driverType, rentDate, pickupTime, isFilterValid);
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -137,7 +142,9 @@ export default function CarFilter({ title, variant }: IProps) {
           {/* Button */}
           {variant && <p></p>}
           {variant === "submit" ? (
-            <Button type="submit">Cari Mobil</Button>
+            <Button type="submit" disabled={!isFilterValid}>
+              Cari Mobil
+            </Button>
           ) : (
             variant === "edit" && (
               <Button variant="secondary" onclick={() => navigate("/car")}>
