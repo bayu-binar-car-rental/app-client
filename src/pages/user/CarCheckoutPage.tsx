@@ -57,7 +57,7 @@ export default function CarCheckoutPage() {
     const data = await response.json();
     const id = data.data.id;
 
-    navigate(`/checkout/${id}`);
+    navigate(`/payment/${id}`);
   };
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function CarCheckoutPage() {
       </div>
 
       {/* Payment */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         {/* Left */}
         <div className="p-4 border rounded-sm space-y-6 h-fit">
           <p className="font-bold text-lg">Pilih Bank Transfer</p>

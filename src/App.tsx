@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <CarDetailPage />,
       },
       {
-        path: "/payment",
+        path: "/checkout",
         element: <CarCheckoutPage />,
       },
       {
