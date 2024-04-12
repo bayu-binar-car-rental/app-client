@@ -83,7 +83,7 @@ export default function CarDetailPage() {
             )}
           </div>
           <div className="hidden md:flex justify-end mt-4">
-            <Button onclick={() => navigate("/payment", { state: car })}>
+            <Button onclick={() => navigate("/checkout", { state: car })}>
               Lanjutkan Pembayaran
             </Button>
           </div>
@@ -108,7 +108,7 @@ export default function CarDetailPage() {
                 <div className="mt-4">
                   <Button
                     fullWidth
-                    onclick={() => navigate("/payment", { state: car })}
+                    onclick={() => navigate("/checkout", { state: car })}
                   >
                     Lanjutkan Pembayaran
                   </Button>
