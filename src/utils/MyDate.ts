@@ -1,6 +1,10 @@
 export default class MyDate {
   constructor() {}
 
+  now() {
+    return new Date();
+  }
+
   today() {
     const date = new Date();
     const year = date.getFullYear();
@@ -13,5 +17,13 @@ export default class MyDate {
     const day = date.getDate();
 
     return year + "-" + month + "-" + day;
+  }
+
+  tomorrow() {
+    return new Date(new Date().getTime() + 86400000);
+  }
+
+  addMinutes(minute: number) {
+    return new Date(new Date().getTime() + minute * 60_000);
   }
 }
