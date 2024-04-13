@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../../../redux/hooks";
+import { useAppSelector } from "../../../../states/hooks";
 import { useAuthorizeUser } from "../../../../hooks/useAuthorizeUser";
 
 import Logo from "../../../ui/Logo";

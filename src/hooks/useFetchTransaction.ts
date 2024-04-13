@@ -5,6 +5,7 @@ export default function useFetchTransaction(paymentId: number) {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<IPaymentMethod | null>();
+  const [paymentDeadline, setPaymentDeadline] = useState<string | null>();
 
   useEffect(() => {
     const fetchTransaction = async (paymentId: number) => {
@@ -15,6 +16,7 @@ export default function useFetchTransaction(paymentId: number) {
 
         const data = await response.json();
         setTotalPrice(data.data.totalPrice);
+        setPaymentDeadline(data.data.paymentDeadline);
         data.data.paymentProcessingDeadline && setPaymentConfirmed(true);
 
         const payment = paymentMethods.find((method) => {
@@ -30,5 +32,11 @@ export default function useFetchTransaction(paymentId: number) {
     fetchTransaction(Number(paymentId));
   }, []);
 
-  return { totalPrice, paymentMethod, paymentConfirmed, setPaymentConfirmed };
+  return {
+    totalPrice,
+    paymentMethod,
+    paymentDeadline,
+    paymentConfirmed,
+    setPaymentConfirmed,
+  };
 }

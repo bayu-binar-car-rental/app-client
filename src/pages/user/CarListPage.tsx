@@ -1,6 +1,6 @@
 import useFetchCars from "../../hooks/useFetchCars";
-import { useAppSelector } from "../../redux/hooks";
-import { selectLoading } from "../../redux/slices/loadingSlice";
+import { useAppSelector } from "../../states/hooks";
+import { selectLoading } from "../../states/slices/loadingSlice";
 
 import Title from "../../components/ui/Title";
 import CarFilter from "../../components/ui/CarFilter";

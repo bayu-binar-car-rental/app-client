@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
-import { selectLoading } from "../../redux/slices/loadingSlice";
+import { useAppSelector } from "../../states/hooks";
+import { selectLoading } from "../../states/slices/loadingSlice";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoChevronDownOutline } from "react-icons/io5";

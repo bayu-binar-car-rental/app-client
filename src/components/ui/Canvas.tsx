@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../states/hooks";
 import {
   selectToggle,
   setToggleNavbarCanvas,
-} from "../../redux/slices/toggleSlice";
+} from "../../states/slices/toggleSlice";
 
 export default function Canvas({ children }: PropsWithChildren) {
   const dispatch = useAppDispatch();

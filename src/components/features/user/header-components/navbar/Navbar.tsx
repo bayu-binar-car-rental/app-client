@@ -4,8 +4,8 @@ import { useAuthorizeUser } from "../../../../../hooks/useAuthorizeUser";
 
 import Logo from "../../../../ui/Logo";
 import Canvas from "../../../../ui/Canvas";
-import { setToggleNavbarCanvas } from "../../../../../redux/slices/toggleSlice";
-import { useAppDispatch } from "../../../../../redux/hooks";
+import { setToggleNavbarCanvas } from "../../../../../states/slices/toggleSlice";
+import { useAppDispatch } from "../../../../../states/hooks";
 import NavbarCanvas from "./NavbarCanvas";
 
 export default function Navbar({ children }: PropsWithChildren) {

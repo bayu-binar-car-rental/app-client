@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hooks";
-import { setToggleCanvas } from "../../redux/slices/toggleSlice";
+import { useAppDispatch } from "../../states/hooks";
+import { setToggleCanvas } from "../../states/slices/toggleSlice";
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();

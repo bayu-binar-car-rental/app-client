@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "../../ui/ScrollToTop";
-import { useAppSelector } from "../../../redux/hooks";
-import { selectToggle } from "../../../redux/slices/toggleSlice";
+import { useAppSelector } from "../../../states/hooks";
+import { selectToggle } from "../../../states/slices/toggleSlice";
 
 import Header from "./Header";
 import Footer from "./Footer";

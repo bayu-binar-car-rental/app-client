@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { setIsLoading } from "../redux/slices/loadingSlice";
+import { useAppDispatch } from "../states/hooks";
+import { setIsLoading } from "../states/slices/loadingSlice";
 import { ICar } from "../types/cars";
 import { useLocation } from "react-router-dom";
 

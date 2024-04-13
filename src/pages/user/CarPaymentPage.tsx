@@ -11,8 +11,13 @@ import PaymentConfirmation from "../../components/features/user/payment/PaymentC
 export default function CarPaymentPage() {
   const { paymentId } = useParams();
   const transactionId = Number(paymentId);
-  const { totalPrice, paymentMethod, paymentConfirmed, setPaymentConfirmed } =
-    useFetchTransaction(transactionId);
+  const {
+    totalPrice,
+    paymentMethod,
+    paymentDeadline,
+    paymentConfirmed,
+    setPaymentConfirmed,
+  } = useFetchTransaction(transactionId);
 
   return (
     <>
@@ -23,7 +28,7 @@ export default function CarPaymentPage() {
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-4">
-          <PaymentTimer />
+          <PaymentTimer paymentDeadline={paymentDeadline as string} />
           <PaymentDetail
             totalPrice={totalPrice}
             paymentMethod={paymentMethod as IPaymentMethod}

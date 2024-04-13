@@ -1,3 +1,5 @@
+import days from "../data/days";
+
 export default class MyDate {
   constructor() {}
 
@@ -25,5 +27,15 @@ export default class MyDate {
 
   addMinutes(minute: number) {
     return new Date(new Date().getTime() + minute * 60_000);
+  }
+
+  getFullTime(deadline: string) {
+    const dateFn = new Date(deadline);
+
+    const day = days[dateFn.getDay()];
+    const date = dateFn.toUTCString().slice(5, 16);
+    const time = dateFn.toLocaleTimeString();
+
+    return { day, date, time };
   }
 }

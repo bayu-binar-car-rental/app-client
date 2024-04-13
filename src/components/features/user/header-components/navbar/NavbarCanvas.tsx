@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../../../../../redux/hooks";
-import { setToggleNavbarCanvas } from "../../../../../redux/slices/toggleSlice";
+import { useAppDispatch } from "../../../../../states/hooks";
+import { setToggleNavbarCanvas } from "../../../../../states/slices/toggleSlice";
 
 export default function NavbarCanvas() {
   const dispatch = useAppDispatch();

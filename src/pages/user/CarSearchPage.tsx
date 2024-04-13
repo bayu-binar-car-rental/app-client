@@ -1,7 +1,7 @@
 import CarFilter from "../../components/ui/CarFilter";
 
-import { selectLoading, setIsLoading } from "../../redux/slices/loadingSlice";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { selectLoading, setIsLoading } from "../../states/slices/loadingSlice";
+import { useAppSelector, useAppDispatch } from "../../states/hooks";
 import { useEffect } from "react";
 import Canvas from "../../components/ui/Canvas";
 

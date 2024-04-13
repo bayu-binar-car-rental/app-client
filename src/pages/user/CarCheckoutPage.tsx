@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../states/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { FaCheck } from "react-icons/fa6";

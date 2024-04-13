@@ -1,6 +1,6 @@
-import { setUser } from "../redux/slices/userSlice";
-import { setToken } from "../redux/slices/authSlice";
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { setUser } from "../states/slices/userSlice";
+import { setToken } from "../states/slices/authSlice";
+import { useAppSelector, useAppDispatch } from "../states/hooks";
 import { useEffect } from "react";
 
 export const useAuthorizeUser = async () => {

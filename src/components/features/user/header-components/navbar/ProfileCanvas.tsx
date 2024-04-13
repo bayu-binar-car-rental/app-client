@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 
 import Avatar from "../../../../ui/Avatar";
-import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../../states/hooks";
 import {
   selectToggle,
   setToggleProfileCanvas,
-} from "../../../../../redux/slices/toggleSlice";
+} from "../../../../../states/slices/toggleSlice";
 
 interface IProfileCanvasItemProps {
   onClick: () => void | null;
