@@ -6,17 +6,19 @@ interface IProps {
   withBack?: boolean;
 }
 
-export default function CarCheckoutProgress({ progress }: IProps) {
+export default function CarCheckoutProgress({ progress, withBack }: IProps) {
   const navigate = useNavigate();
 
   return (
     <>
       <div className="flex flex-col space-y-2 md:flex-row md:justify-between">
         <div className="flex items-center space-x-2">
-          <FaArrowLeftLong
-            className="text-xl hover:cursor-pointer"
-            onClick={() => navigate(-1)}
-          />
+          {withBack && (
+            <FaArrowLeftLong
+              className="text-xl hover:cursor-pointer"
+              onClick={() => navigate(-1)}
+            />
+          )}
           <p className="text-lg font-bold">Pembayaran</p>
         </div>
         <div className="flex space-x-2 items-center justify-center">

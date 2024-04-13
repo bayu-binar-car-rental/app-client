@@ -84,7 +84,7 @@ export default function CarCheckoutPage() {
       {/* Filters */}
       <div className="py-32 lg:py-3"></div>
       <div className="mx-5 space-y-5 lg:mx-20 xl:mx-32 absolute -top-48 right-0 left-0 z-20">
-        <CarCheckoutProgress />
+        <CarCheckoutProgress withBack />
         <CarFilter title="Detail Pesananmu" />
       </div>
 
