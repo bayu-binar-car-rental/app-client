@@ -21,43 +21,50 @@ export default function CarCheckoutPage() {
   const car = location.state;
   const carFilter = JSON.parse(localStorage.getItem("carFilters") as string);
 
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const userId = useAppSelector((state) => state.user.id);
 
   const handlePayment = async () => {
-    const today = new Date();
-    const tomorrow = new Date(today.getTime() + 8640000);
+    if (isLoggedIn) {
+      localStorage.setItem(
+        "carFilters",
+        JSON.stringify({
+          ...carFilter,
+          paymentMethod: selectedPayment,
+        })
+      );
 
-    localStorage.setItem(
-      "carFilters",
-      JSON.stringify({
-        ...carFilter,
+      const payload: ITransactions = {
+        idUser: +userId,
+        idCar: car.id,
+        totalPrice: totalPrice,
+        withDriver: +carFilter.driverType,
+        rentDate: carFilter.rentDate,
+        pickupTime: carFilter.pickupTime,
+        totalPassenger: +carFilter.totalPassenger,
         paymentMethod: selectedPayment,
-      })
-    );
+        paymentStatus: "ongoing",
+      };
 
-    const payload: ITransactions = {
-      idUser: userId,
-      idCar: car.id,
-      totalPrice: totalPrice,
-      withDriver: carFilter.driverType,
-      rentDate: carFilter.rentDate,
-      pickupTime: carFilter.pickupTime,
-      totalPassenger: carFilter.totalPassenger,
-      paymentMethod: selectedPayment,
-      paymentStatus: "ongoing",
-      paymentDeadline: tomorrow.toLocaleString(),
-    };
+      console.log(payload);
 
-    const response = await fetch("http://localhost:3000/api/v1/transactions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+      const response = await fetch(
+        "http://localhost:3000/api/v1/transactions",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
-    const data = await response.json();
-    const id = data.data.id;
+      const data = await response.json();
+      console.log(data);
+      const id = data.data.id;
 
-    navigate(`/payment/${id}`);
+      navigate(`/payment/${id}`);
+    } else {
+      alert("Need to Sign In");
+    }
   };
 
   useEffect(() => {

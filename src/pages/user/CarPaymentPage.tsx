@@ -1,15 +1,19 @@
+import { useEffect, useState } from "react";
+
 import { GoCopy } from "react-icons/go";
 import { CiImageOn } from "react-icons/ci";
-import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function PaymentInstructions() {
+import convertRupiah from "../../utils/convertRupiah";
+import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
+import { paymentMethods, IPaymentMethod } from "../../data/paymentMethods";
+
+function PaymentInstructions({ paymentName }: { paymentName: string }) {
   const [selectedMethod, setSelectedMethod] = useState<number>(0);
   const methods: string[] = [
-    "ATM BCA",
-    "M-BCA",
-    "BCA Klik",
+    `ATM ${paymentName}`,
+    `M-${paymentName}`,
+    `${paymentName} Klik`,
     "Internet Banking",
   ];
 
@@ -41,16 +45,42 @@ function PaymentInstructions() {
 
 export default function CarPaymentPage() {
   const [paymentConfirmed, setPaymentConfirmed] = useState<boolean>(false);
+  const [paymentMethod, setPaymentMethod] = useState<IPaymentMethod | null>();
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const { paymentId } = useParams();
+
+  useEffect(() => {
+    const fetchTransaction = async (paymentId: number) => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/v1/transactions/${paymentId}`
+        );
+
+        const data = await response.json();
+        console.log(data);
+        setTotalPrice(data.data.totalPrice);
+
+        const payment = paymentMethods.find((method) => {
+          return method.id === data.data.paymentMethod;
+        });
+
+        setPaymentMethod(payment);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetchTransaction(Number(paymentId));
+  }, []);
 
   return (
     <>
       {/* Filters */}
-      <div className="mx-5 space-y-1 lg:mx-20 xl:mx-32 absolute -top-28 right-0 left-0 z-20">
+      <div className="mx-5 space-y-1 lg:mx-20 xl:mx-32 absolute -top-[9rem] md:-top-28 right-0 left-0 z-20">
         <CarCheckoutProgress progress={2} />
         <p>Order ID: {paymentId}</p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-4">
           {/* 1st Card */}
           <div className="p-4 border rounded-sm flex justify-between items-center">
@@ -79,24 +109,24 @@ export default function CarPaymentPage() {
               <p className="font-bold text-md">Lakukan Transfer Ke</p>
               <div className="flex space-x-2 items-center">
                 <div className="border-2 rounded-md py-1 w-20 group flex justify-center h-fit">
-                  BCA
+                  {paymentMethod?.name}
                 </div>
                 <div>
-                  <p>BCA Transfer</p>
-                  <p>a.n Binar Car Rental</p>
+                  <p>{paymentMethod?.fullname}</p>
+                  <p>a.n {paymentMethod?.accountName}</p>
                 </div>
               </div>
               <div className="space-y-2">
                 <p>Nomor Rekening</p>
                 <div className="border-2 border-black rounded-sm py-1 px-3 flex items-center justify-between">
-                  <p>xxxx-xxxx-xxxx</p>
+                  <p>{paymentMethod?.accountNumber}</p>
                   <GoCopy className="text-md hover:cursor-pointer" />
                 </div>
               </div>
               <div className="space-y-2">
                 <p>Total Bayar</p>
                 <div className="border-2 border-black rounded-sm py-1 px-3 flex items-center justify-between">
-                  <p className="font-bold">Rp 230.000</p>
+                  <p className="font-bold">Rp {convertRupiah(totalPrice)}</p>
                   <GoCopy className="text-md hover:cursor-pointer" />
                 </div>
               </div>
@@ -107,7 +137,9 @@ export default function CarPaymentPage() {
           <div>
             <div className="p-4 border rounded-sm space-y-3">
               <p className="font-bold text-md">Intruksi Pembayaran</p>
-              <PaymentInstructions />
+              <PaymentInstructions
+                paymentName={paymentMethod?.name as string}
+              />
             </div>
           </div>
         </div>
