@@ -1,10 +1,12 @@
 import { CiImageOn } from "react-icons/ci";
 import useUpdateTransaction from "../../../../hooks/useUpdateTransaction";
 import MyDate from "../../../../utils/MyDate";
+import useTimer from "../../../../hooks/useTimer";
 
 interface IPaymentConfirmation {
   transactionId: number;
   paymentConfirmed: boolean;
+  paymentConfirmationDeadline: string | null;
   setPaymentConfirmed: (state: boolean) => void;
 }
 
@@ -12,7 +14,9 @@ export default function PaymentConfirmation({
   transactionId,
   paymentConfirmed,
   setPaymentConfirmed,
+  paymentConfirmationDeadline,
 }: IPaymentConfirmation) {
+  const { minutes, seconds } = useTimer(paymentConfirmationDeadline as string);
   const handlePaymentConfirmation = () => {
     setPaymentConfirmed(true);
     const myDate = new MyDate();
@@ -41,11 +45,11 @@ export default function PaymentConfirmation({
             <p className="font-bold text-md">Konfirmasi Pembayaran</p>
             <p className="text-xl">
               <span className="p-1 rounded-sm bg-red-500 text-white me-1">
-                09
+                {minutes}
               </span>
               :
               <span className="p-1 rounded-sm bg-red-500 text-white mx-1">
-                55
+                {seconds}
               </span>
             </p>
           </div>

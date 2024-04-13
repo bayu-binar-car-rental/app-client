@@ -17,6 +17,7 @@ export default function CarPaymentPage() {
     paymentDeadline,
     paymentConfirmed,
     setPaymentConfirmed,
+    paymentConfirmationDeadline,
   } = useFetchTransaction(transactionId);
 
   return (
@@ -41,6 +42,9 @@ export default function CarPaymentPage() {
             transactionId={transactionId}
             paymentConfirmed={paymentConfirmed}
             setPaymentConfirmed={setPaymentConfirmed}
+            paymentConfirmationDeadline={
+              paymentConfirmationDeadline as string | null
+            }
           />
         </div>
       </div>
