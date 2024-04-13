@@ -28,14 +28,26 @@ export default function PaymentDetail({
           <p>Nomor Rekening</p>
           <div className="border-2 border-black rounded-sm py-1 px-3 flex items-center justify-between">
             <p>{paymentMethod?.accountNumber}</p>
-            <GoCopy className="text-md hover:cursor-pointer" />
+            <GoCopy
+              onClick={() => {
+                navigator.clipboard.writeText(paymentMethod?.accountNumber);
+                alert("Copied!");
+              }}
+              className="text-md hover:cursor-pointer"
+            />
           </div>
         </div>
         <div className="space-y-2">
           <p>Total Bayar</p>
           <div className="border-2 border-black rounded-sm py-1 px-3 flex items-center justify-between">
             <p className="font-bold">Rp {convertRupiah(totalPrice)}</p>
-            <GoCopy className="text-md hover:cursor-pointer" />
+            <GoCopy
+              onClick={() => {
+                navigator.clipboard.writeText(totalPrice.toString());
+                alert("Copied!");
+              }}
+              className="text-md hover:cursor-pointer"
+            />
           </div>
         </div>
       </div>
