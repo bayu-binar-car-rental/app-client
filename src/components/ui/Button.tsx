@@ -9,9 +9,9 @@ interface IProps {
 }
 
 export default function Button({
+  type,
   children,
   variant = "primary",
-  type,
   fullWidth,
   onclick,
   disabled,

@@ -9,6 +9,7 @@ interface IPaymentOngoingProps {
   transactionId: number;
   paymentDeadline: string;
   paymentConfirmed: boolean;
+  paymentProofImage: string;
   paymentConfirmationDeadline: string;
   paymentMethod: IPaymentMethod;
   setPaymentConfirmed: (state: boolean) => void;
@@ -20,6 +21,7 @@ export default function PaymentOngoing({
   paymentMethod,
   paymentDeadline,
   paymentConfirmed,
+  paymentProofImage,
   setPaymentConfirmed,
   paymentConfirmationDeadline,
 }: IPaymentOngoingProps) {
@@ -38,6 +40,7 @@ export default function PaymentOngoing({
         <PaymentConfirmation
           transactionId={transactionId}
           paymentConfirmed={paymentConfirmed}
+          paymentProofImage={paymentProofImage}
           setPaymentConfirmed={setPaymentConfirmed}
           paymentConfirmationDeadline={
             paymentConfirmationDeadline as string | null

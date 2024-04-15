@@ -16,6 +16,7 @@ export default function CarPaymentPage() {
     paymentStatus,
     paymentDeadline,
     paymentConfirmed,
+    paymentProofImage,
     setPaymentConfirmed,
     paymentConfirmationDeadline,
   } = useFetchTransaction(transactionId);
@@ -39,6 +40,7 @@ export default function CarPaymentPage() {
           totalPrice={totalPrice}
           transactionId={transactionId}
           paymentConfirmed={paymentConfirmed}
+          paymentProofImage={paymentProofImage as string}
           setPaymentConfirmed={setPaymentConfirmed}
           paymentDeadline={paymentDeadline as string}
           paymentMethod={paymentMethod as IPaymentMethod}
