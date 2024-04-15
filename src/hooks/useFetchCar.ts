@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { ICar } from "../types/cars";
-import { useAppDispatch } from "../redux/hooks";
-import { setIsLoading } from "../redux/slices/loadingSlice";
+import { useAppDispatch } from "../states/hooks";
+import { setIsLoading } from "../states/slices/loadingSlice";
 
 export default function useFetchCar(id: string) {
   const carId = id;

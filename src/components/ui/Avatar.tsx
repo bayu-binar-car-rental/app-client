@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../states/hooks";
 
 export default function Avatar() {
   const user = useAppSelector((state) => state.user);

@@ -21,7 +21,7 @@ import {
   CarDetailPage,
   CarCheckoutPage,
   CarPaymentPage,
-} from "./pages/user";
+} from "./pages";
 
 const router = createBrowserRouter([
   {

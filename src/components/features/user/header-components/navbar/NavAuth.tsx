@@ -1,7 +1,7 @@
 // Imports
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
-import { setToggleProfileCanvas } from "../../../../../redux/slices/toggleSlice";
+import { useAppDispatch, useAppSelector } from "../../../../../states/hooks";
+import { setToggleProfileCanvas } from "../../../../../states/slices/toggleSlice";
 
 import Button from "../../../../ui/Button";
 import Avatar from "../../../../ui/Avatar";

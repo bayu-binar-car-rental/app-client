@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../states/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { FaCheck } from "react-icons/fa6";
@@ -21,43 +21,50 @@ export default function CarCheckoutPage() {
   const car = location.state;
   const carFilter = JSON.parse(localStorage.getItem("carFilters") as string);
 
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const userId = useAppSelector((state) => state.user.id);
 
   const handlePayment = async () => {
-    const today = new Date();
-    const tomorrow = new Date(today.getTime() + 8640000);
+    if (isLoggedIn) {
+      localStorage.setItem(
+        "carFilters",
+        JSON.stringify({
+          ...carFilter,
+          paymentMethod: selectedPayment,
+        })
+      );
 
-    localStorage.setItem(
-      "carFilters",
-      JSON.stringify({
-        ...carFilter,
+      const payload: ITransactions = {
+        idUser: +userId,
+        idCar: car.id,
+        totalPrice: totalPrice,
+        withDriver: +carFilter.driverType,
+        rentDate: carFilter.rentDate,
+        pickupTime: carFilter.pickupTime,
+        totalPassenger: +carFilter.totalPassenger,
         paymentMethod: selectedPayment,
-      })
-    );
+        paymentStatus: "ongoing",
+      };
 
-    const payload: ITransactions = {
-      idUser: userId,
-      idCar: car.id,
-      totalPrice: totalPrice,
-      withDriver: carFilter.driverType,
-      rentDate: carFilter.rentDate,
-      pickupTime: carFilter.pickupTime,
-      totalPassenger: carFilter.totalPassenger,
-      paymentMethod: selectedPayment,
-      paymentStatus: "ongoing",
-      paymentDeadline: tomorrow.toLocaleString(),
-    };
+      console.log(payload);
 
-    const response = await fetch("http://localhost:3000/api/v1/transactions", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+      const response = await fetch(
+        "http://localhost:3000/api/v1/transactions",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
-    const data = await response.json();
-    const id = data.data.id;
+      const data = await response.json();
+      console.log(data);
+      const id = data.data.id;
 
-    navigate(`/payment/${id}`);
+      navigate(`/payment/${id}`);
+    } else {
+      alert("Need to Sign In");
+    }
   };
 
   useEffect(() => {
@@ -77,7 +84,7 @@ export default function CarCheckoutPage() {
       {/* Filters */}
       <div className="py-32 lg:py-3"></div>
       <div className="mx-5 space-y-5 lg:mx-20 xl:mx-32 absolute -top-48 right-0 left-0 z-20">
-        <CarCheckoutProgress />
+        <CarCheckoutProgress withBack />
         <CarFilter title="Detail Pesananmu" />
       </div>
 
