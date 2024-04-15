@@ -4,6 +4,7 @@ import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
 import useFetchTransaction from "../../hooks/useFetchTransaction";
 import { IPaymentMethod } from "../../data/paymentMethods";
 import PaymentOngoing from "../../components/features/user/payment/PaymentOngoing";
+import PaymentSuccess from "../../components/features/user/payment/PaymentSuccess";
 
 export default function CarPaymentPage() {
   const { paymentId } = useParams();
@@ -41,7 +42,7 @@ export default function CarPaymentPage() {
           paymentConfirmationDeadline={paymentConfirmationDeadline as string}
         />
       ) : "success" ? (
-        <>Success</>
+        <PaymentSuccess />
       ) : "failed" ? (
         <>Failed</>
       ) : (
