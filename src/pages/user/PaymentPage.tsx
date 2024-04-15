@@ -5,6 +5,7 @@ import useFetchTransaction from "../../hooks/useFetchTransaction";
 import { IPaymentMethod } from "../../data/paymentMethods";
 import PaymentOngoing from "../../components/features/user/payment/PaymentOngoing";
 import PaymentSuccess from "../../components/features/user/payment/PaymentSuccess";
+import PaymentFailed from "../../components/features/user/payment/PaymentFailed";
 
 export default function CarPaymentPage() {
   const { paymentId } = useParams();
@@ -18,6 +19,8 @@ export default function CarPaymentPage() {
     setPaymentConfirmed,
     paymentConfirmationDeadline,
   } = useFetchTransaction(transactionId);
+
+  console.log(paymentStatus);
 
   return (
     <>
@@ -41,10 +44,10 @@ export default function CarPaymentPage() {
           paymentMethod={paymentMethod as IPaymentMethod}
           paymentConfirmationDeadline={paymentConfirmationDeadline as string}
         />
-      ) : "success" ? (
+      ) : paymentStatus === "success" ? (
         <PaymentSuccess />
-      ) : "failed" ? (
-        <>Failed</>
+      ) : paymentStatus === "failed" ? (
+        <PaymentFailed />
       ) : (
         <>Rejected</>
       )}
