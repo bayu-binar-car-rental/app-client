@@ -8,7 +8,6 @@ export default function useTimer(deadline: string) {
   const getTime = (deadline: string) => {
     if (deadline) {
       const time = Date.parse(deadline) - Date.now();
-      console.log(time);
 
       if (time <= 0) {
         return;

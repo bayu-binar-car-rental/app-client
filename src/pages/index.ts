@@ -4,4 +4,4 @@ export { default as CarSearchPage } from "./user/CarSearchPage";
 export { default as CarListPage } from "./user/CarListPage";
 export { default as CarDetailPage } from "./user/CarDetailPage";
 export { default as CarCheckoutPage } from "./user/CarCheckoutPage";
-export { default as CarPaymentPage } from "./user/CarPaymentPage";
+export { default as CarPaymentPage } from "./user/PaymentPage";
