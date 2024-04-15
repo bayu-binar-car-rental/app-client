@@ -11,6 +11,8 @@ export interface ITransactions {
   paymentStatus?: "ongoing" | "success" | "failed" | "rejected";
   paymentDeadline?: string;
   paymentProcessingDeadline?: string;
+  paymentProofImage?: string;
+  paymentInvoice?: string;
   created_at?: string;
   updated_at?: string;
 }

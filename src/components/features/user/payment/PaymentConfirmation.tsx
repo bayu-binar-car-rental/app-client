@@ -1,11 +1,14 @@
-import { CiImageOn } from "react-icons/ci";
 import useUpdateTransaction from "../../../../hooks/useUpdateTransaction";
 import MyDate from "../../../../utils/MyDate";
 import useTimer from "../../../../hooks/useTimer";
+import UploadFileArea from "../../../ui/UploadFileArea";
+import Button from "../../../ui/Button";
+import { useEffect, useState } from "react";
 
 interface IPaymentConfirmation {
   transactionId: number;
   paymentConfirmed: boolean;
+  paymentProofImage: string;
   paymentConfirmationDeadline: string | null;
   setPaymentConfirmed: (state: boolean) => void;
 }
@@ -13,10 +16,17 @@ interface IPaymentConfirmation {
 export default function PaymentConfirmation({
   transactionId,
   paymentConfirmed,
+  paymentProofImage,
   setPaymentConfirmed,
   paymentConfirmationDeadline,
 }: IPaymentConfirmation) {
+  const [image, setImage] = useState<string | null>();
   const { minutes, seconds } = useTimer(paymentConfirmationDeadline as string);
+
+  useEffect(() => {
+    !image && paymentProofImage && setImage(paymentProofImage);
+  }, [paymentProofImage]);
+
   const handlePaymentConfirmation = () => {
     setPaymentConfirmed(true);
     const myDate = new MyDate();
@@ -25,6 +35,15 @@ export default function PaymentConfirmation({
     };
 
     useUpdateTransaction({ transactionId, params });
+  };
+
+  const handleUploadImage = async () => {
+    const params = { paymentProofImage: image as string };
+    const props = { transactionId, params };
+
+    await useUpdateTransaction(props);
+
+    alert("Upload Success");
   };
 
   return (
@@ -63,12 +82,12 @@ export default function PaymentConfirmation({
             Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa
             upload bukti bayarmu
           </p>
-          <div className="flex justify-center items-center mx-10 p-20 bg-gray-200 border-2 border-dashed border-gray-400 rounded-sm">
-            <CiImageOn className="text-3xl" />
+          <div className="mx-10">
+            <UploadFileArea image={image as string} setImage={setImage} />
           </div>
-          <button className="py-2 w-full bg-green-500 rounded-sm text-white font-bold">
+          <Button fullWidth onclick={handleUploadImage}>
             Upload
-          </button>
+          </Button>
         </>
       )}
     </>

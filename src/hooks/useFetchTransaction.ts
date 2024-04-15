@@ -9,6 +9,7 @@ export default function useFetchTransaction(paymentId: number) {
   const [paymentConfirmationDeadline, setPaymentConfirmationDeadline] =
     useState<string | null>();
   const [paymentStatus, setPaymentStatus] = useState<string | null>();
+  const [paymentProofImage, setPaymentProofImage] = useState<string | null>();
 
   useEffect(() => {
     const fetchTransaction = async (paymentId: number) => {
@@ -25,6 +26,9 @@ export default function useFetchTransaction(paymentId: number) {
           setPaymentConfirmed(true);
           setPaymentConfirmationDeadline(data.data.paymentProcessingDeadline);
         }
+
+        data.data.paymentProofImage &&
+          setPaymentProofImage(data.data.paymentProofImage);
 
         const payment = paymentMethods.find((method) => {
           return method.id === data.data.paymentMethod;
@@ -45,6 +49,7 @@ export default function useFetchTransaction(paymentId: number) {
     paymentStatus,
     paymentDeadline,
     paymentConfirmed,
+    paymentProofImage,
     setPaymentConfirmed,
     paymentConfirmationDeadline,
   };
