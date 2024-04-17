@@ -21,6 +21,7 @@ export default function PaymentConfirmation({
   paymentConfirmationDeadline,
 }: IPaymentConfirmation) {
   const [image, setImage] = useState<string | null>();
+  const [uploaded, setUploaded] = useState<boolean>(false);
   const { minutes, seconds } = useTimer(paymentConfirmationDeadline as string);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function PaymentConfirmation({
     const props = { transactionId, params };
 
     await useUpdateTransaction(props);
+    setUploaded(true);
 
     alert("Upload Success");
   };
@@ -83,11 +85,17 @@ export default function PaymentConfirmation({
             upload bukti bayarmu
           </p>
           <div className="mx-10">
-            <UploadFileArea image={image as string} setImage={setImage} />
+            <UploadFileArea
+              image={image as string}
+              setImage={setImage}
+              uploaded={uploaded}
+            />
           </div>
-          <Button fullWidth onclick={handleUploadImage}>
-            Upload
-          </Button>
+          {!uploaded && (
+            <Button fullWidth onclick={handleUploadImage}>
+              Upload
+            </Button>
+          )}
         </>
       )}
     </>

@@ -21,8 +21,6 @@ export default function CarPaymentPage() {
     paymentConfirmationDeadline,
   } = useFetchTransaction(transactionId);
 
-  console.log(paymentStatus);
-
   return (
     <>
       {/* Filters */}
