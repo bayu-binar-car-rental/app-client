@@ -35,11 +35,14 @@ export default function SignUpPage() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/v1/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://binar-car-rental-api-bayu.fly.dev/api/v1/auth",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       const data = await response.json();
       if ((await data.meta.code) !== 201) {

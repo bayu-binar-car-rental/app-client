@@ -15,7 +15,7 @@ export default function useFetchTransaction(paymentId: number) {
     const fetchTransaction = async (paymentId: number) => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/v1/transactions/${paymentId}`
+          `https://binar-car-rental-api-bayu.fly.dev/api/v1/transactions/${paymentId}`
         );
 
         const data = await response.json();

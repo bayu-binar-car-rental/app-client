@@ -49,7 +49,7 @@ export default function CarCheckoutPage() {
       console.log(payload);
 
       const response = await fetch(
-        "http://localhost:3000/api/v1/transactions",
+        "https://binar-car-rental-api-bayu.fly.dev/api/v1/transactions",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

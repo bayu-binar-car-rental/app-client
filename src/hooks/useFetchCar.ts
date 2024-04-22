@@ -15,7 +15,7 @@ export default function useFetchCar(id: string) {
     const fetchCar = async (carId: string) => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/v1/cars/${+carId}`
+          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${+carId}`
         );
 
         const data = await response.json();

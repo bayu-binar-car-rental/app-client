@@ -16,7 +16,7 @@ export default function useFetchCars() {
       dispatch(setIsLoading(true));
       try {
         const response = await fetch(
-          `http://localhost:3000/api/v1/cars?availableOnly=true&capacity=${totalPassenger}`
+          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=true&capacity=${totalPassenger}`
         );
 
         const data = await response.json();

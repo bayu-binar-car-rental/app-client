@@ -7,7 +7,7 @@ import ContentHeader from "../../components/features/admin/AdminLayout/ContentHe
 
 import { menus } from "../../data/menus";
 
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://binar-car-rental-api-bayu.fly.dev/";
 
 export default function AdminLayout() {
   const [collapse, setCollapse] = useState<boolean>(true);

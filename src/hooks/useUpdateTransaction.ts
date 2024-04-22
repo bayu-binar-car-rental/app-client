@@ -11,7 +11,7 @@ const useUpdateTransaction = async ({
 }: IUpdateTranscationProps) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/v1/transactions/${transactionId}`,
+      `https://binar-car-rental-api-bayu.fly.dev/api/v1/transactions/${transactionId}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

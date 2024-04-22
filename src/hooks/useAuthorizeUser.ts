@@ -13,7 +13,7 @@ export const useAuthorizeUser = async () => {
     const whoAmI = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/v1/auth/authorize-jwt",
+          "https://binar-car-rental-api-bayu.fly.dev/api/v1/auth/authorize-jwt",
           {
             method: "POST",
             headers: { Authorization: isLoggedIn as string },
