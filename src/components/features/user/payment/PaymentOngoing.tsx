@@ -42,9 +42,7 @@ export default function PaymentOngoing({
           paymentConfirmed={paymentConfirmed}
           paymentProofImage={paymentProofImage}
           setPaymentConfirmed={setPaymentConfirmed}
-          paymentConfirmationDeadline={
-            paymentConfirmationDeadline as string | null
-          }
+          paymentConfirmationDeadline={paymentConfirmationDeadline as string}
         />
       </div>
     </div>
