@@ -3,6 +3,15 @@ import Title from "../../../ui/Title";
 
 export default function CallToAction() {
   const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    if (localStorage.getItem("carFilters")) {
+      localStorage.removeItem("carFilters");
+    }
+
+    navigate("car");
+  };
+
   return (
     <>
       {/* Call To Action */}
@@ -21,7 +30,7 @@ export default function CallToAction() {
           <div className="sm:pt-10">
             <button
               className="p-2 px-5 bg-[#5CB85F] text-white"
-              onClick={() => navigate("car")}
+              onClick={handleNavigation}
             >
               Mulai Sewa Mobil
             </button>

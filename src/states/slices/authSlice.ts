@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-export interface AuthState {
+export interface IAuthState {
   isLoggedIn: string | null;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   isLoggedIn: localStorage.getItem("token"),
 };
 

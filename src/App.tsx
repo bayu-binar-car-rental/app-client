@@ -1,29 +1,32 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Admin
-import AdminLayout from "./pages/admin/AdminLayout";
-import CarListPage from "./pages/admin/Cars/CarListPage";
-import CarRentPage from "./pages/admin/Cars/CarRentPage";
-import DashboardPage from "./pages/admin/Dashboard/DashboardPage";
-import AnalyticsPage from "./pages/admin/Dashboard/AnalyticsPage";
-import CarDetailsPage from "./pages/admin/Cars/CarDetailsPage";
+import {
+  AdminLayout,
+  CarRentPage,
+  CarDetailsPage,
+  DashboardPage,
+  AnalyticsPage,
+} from "./pages/admin";
 
 // Auth
-import AuthLayout from "./pages/auth/AuthLayout";
-import SignUpPage from "./pages/auth/SignUpPage";
-import SignInPage from "./pages/auth/SignInPage";
+import { AuthLayout, SignUpPage, SignInPage } from "./pages/auth";
 
 // Users
-import UserLayout from "./components/features/user/UserLayout";
-import LandingPage from "./pages/user/LandingPage";
-import CarSearch from "./pages/user/CarSearch.tsx";
-import CarList from "./pages/user/CarList.tsx";
-import CarDetail from "./pages/user/CarDetail.tsx";
-import CarCheckout from "./pages/user/CarCheckout.tsx";
+import {
+  UserLayout,
+  LandingPage,
+  CarSearchPage,
+  CarListPage,
+  CarDetailPage,
+  CarCheckoutPage,
+  CarPaymentPage,
+} from "./pages";
 
 const router = createBrowserRouter([
   {
     element: <UserLayout />,
+    errorElement: <div>Page not found</div>,
     children: [
       {
         path: "/",
@@ -31,19 +34,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/car",
-        element: <CarSearch />,
+        element: <CarSearchPage />,
       },
       {
         path: "/car/car-list",
-        element: <CarList />,
+        element: <CarListPage />,
       },
       {
         path: "/car/:id",
-        element: <CarDetail />,
+        element: <CarDetailPage />,
       },
       {
-        path: "/car/:id/checkout",
-        element: <CarCheckout />,
+        path: "/checkout",
+        element: <CarCheckoutPage />,
+      },
+      {
+        path: "/payment/:paymentId",
+        element: <CarPaymentPage />,
       },
     ],
   },

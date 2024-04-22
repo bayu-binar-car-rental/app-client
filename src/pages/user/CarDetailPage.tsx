@@ -1,52 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppSelector } from "../../states/hooks";
+import { selectLoading } from "../../states/slices/loadingSlice";
+
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoChevronDownOutline } from "react-icons/io5";
-import { GoCalendar, GoPeople, GoGear } from "react-icons/go";
 
-import { ICar } from "../../types/cars";
-import { setIsLoading, selectLoading } from "../../redux/slices/loadingSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import convertRupiah from "../../utils/convertRupiah";
 import CarFilter from "../../components/ui/CarFilter";
+import convertRupiah from "../../utils/convertRupiah";
+import useFetchCar from "../../hooks/useFetchCar";
+import Button from "../../components/ui/Button";
+import CarSpecs from "../../components/ui/CarCard/CarSpecs";
+import { ICar } from "../../types/cars";
+import CarImage from "../../components/ui/CarCard/CarImage";
 
-export default function CarDetail() {
+export default function CarDetailPage() {
   const { id } = useParams();
-  const [car, setCar] = useState<ICar | null>();
+  const { car } = useFetchCar(id as string);
   const [openDropdown, setOpenDropdown] = useState<boolean>(true);
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectLoading);
-
-  useEffect(() => {
-    const fetchCar = async (id: string) => {
-      try {
-        const response = await fetch(
-          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${+id}`
-        );
-
-        const data = await response.json();
-        setCar(data.data);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        dispatch(setIsLoading(false));
-      }
-    };
-
-    fetchCar(id as string);
-  }, []);
 
   return (
     <>
       {/* Filters */}
-      <div className="py-32 lg:py-1"></div>
-      <div className="mx-5 lg:mx-20 xl:mx-32 absolute -top-36 right-0 left-0 z-20">
-        <CarFilter title="Pencarianmu" />
+      <div className="py-28 md:py-32 lg:py-1 "></div>
+      <div className="mx-5 space-y-5 lg:mx-20 xl:mx-32 absolute -top-[13rem] right-0 left-0 z-20">
+        <div className="flex items-center space-x-2">
+          <FaArrowLeftLong
+            className="text-xl hover:cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+          <p className="text-lg font-bold">Detail</p>
+        </div>
+        <CarFilter title="Detail Pesananmu" />
       </div>
 
       {/* Content */}
-      <div className="py-12 grid grid-cols-2 gap-6">
+      <div className="md:py-1 grid md:grid-cols-2 gap-6">
         <div>
           <div className="p-4 border rounded-md space-y-3">
             <h3 className="text-lg font-bold">Tentang Paket</h3>
@@ -90,13 +82,10 @@ export default function CarDetail() {
               </ul>
             )}
           </div>
-          <div className="flex justify-end mt-4">
-            <button
-              className="text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
-              onClick={() => navigate("checkout", { state: car })}
-            >
+          <div className="hidden md:flex justify-end mt-4">
+            <Button onclick={() => navigate("/checkout", { state: car })}>
               Lanjutkan Pembayaran
-            </button>
+            </Button>
           </div>
         </div>
         <div className="border rounded-md h-fit overflow-hidden">
@@ -104,25 +93,12 @@ export default function CarDetail() {
             <h1>Loading....</h1>
           ) : (
             <>
-              <img src={car?.image} alt="" />
+              <CarImage src={car?.image as string} />
               <div className="p-4 space-y-2">
                 <h3 className="font-bold text-lg">
                   {car?.manufacture}/{car?.model}
                 </h3>
-                <div className="flex space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <GoPeople className="text-2xl" />
-                    <p>{car?.capacity} orang</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <GoGear className="text-2xl" />
-                    <p>{car?.transmission}</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <GoCalendar className="text-2xl" />
-                    <p>Tahun {car?.year}</p>
-                  </div>
-                </div>
+                <CarSpecs car={{ ...car } as ICar} />
                 <div className="flex justify-between pt-10">
                   <p>Total</p>
                   <h3 className="font-bold text-xl">
@@ -130,12 +106,12 @@ export default function CarDetail() {
                   </h3>
                 </div>
                 <div className="mt-4">
-                  <button
-                    className="w-full text-sm font-bold p-2 px-5 bg-[#5CB85F] text-white"
-                    onClick={() => navigate("checkout", { state: car })}
+                  <Button
+                    fullWidth
+                    onclick={() => navigate("/checkout", { state: car })}
                   >
                     Lanjutkan Pembayaran
-                  </button>
+                  </Button>
                 </div>
               </div>
             </>

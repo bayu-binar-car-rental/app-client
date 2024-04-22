@@ -3,8 +3,7 @@ import Title from "../../../ui/Title";
 import rating from "../../../../assets/Rate.png";
 import userOne from "../../../../assets/img_photo.png";
 import userTwo from "../../../../assets/img_photo_2.png";
-import chevronLeft from "../../../../assets/fi_chevron-left.png";
-import chevronRight from "../../../../assets/fi_chevron-right.png";
+import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import { useState } from "react";
 
 interface ITestimoni {
@@ -17,7 +16,7 @@ const testimonies: ITestimoni[] = [
   {
     image: userOne,
     testimoni:
-      "Binar Car Rental made our road trip unforgettable! The booking process was seamless, and the car was in pristine condition when we picked it up. We explored stunning landscapes hassle-free, thanks to their reliable service. Highly recommend!",
+      "Binar Car Rental made our road trip unforgettable! The booking process was seamless, and the car was in pristine condition when we picked it up. We explored stunning landscapes hassle-free, thanks to their reliable service. Highly recommend! Definitely would use their service again very soon!",
     user: "Bayu, 23, Bali",
   },
   {
@@ -80,7 +79,7 @@ function TestimoniCard({
 }
 
 export default function Testimonial() {
-  const [selectedTestimoni, setSelectedTestimoni] = useState<number>(1);
+  const [selectedTestimoni, setSelectedTestimoni] = useState<number>(0);
 
   const handleClick = (move: string) => {
     if (move === "next") {
@@ -116,15 +115,15 @@ export default function Testimonial() {
           <div className="flex justify-center space-x-5">
             <button
               onClick={() => handleClick("prev")}
-              className="flex justify-center items-center border p-3 rounded-full"
+              className="flex justify-center items-center border w-10 h-10 rounded-full hover:bg-hijau hover:text-white"
             >
-              <img src={chevronLeft} alt="" />
+              <IoChevronBackOutline />
             </button>
             <button
               onClick={() => handleClick("next")}
-              className="flex justify-center items-center p-3 rounded-full bg-[#5CB85F]"
+              className="flex justify-center items-center border w-10 h-10 rounded-full hover:bg-hijau hover:text-white"
             >
-              <img src={chevronRight} alt="" />
+              <IoChevronForwardOutline />
             </button>
           </div>
         </div>

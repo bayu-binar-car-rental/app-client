@@ -1,23 +1,82 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useAppSelector } from "../../states/hooks";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { FaCheck } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { GoCalendar, GoGear, GoPeople } from "react-icons/go";
 
-import CarFilter from "../../components/ui/CarFilter";
-import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
 import convertRupiah from "../../utils/convertRupiah";
+import CarFilter from "../../components/ui/CarFilter";
+import { ITransactions } from "../../types/transaction";
+import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
 
-export default function CarCheckout() {
-  const [selectedPayment, setSelectedPayment] = useState<number | null>();
+export default function CarCheckoutPage() {
+  const [selectedPayment, setSelectedPayment] = useState<number>(0);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
+  const [totalPrice, setTotalPrice] = useState<number>();
+
+  const navigate = useNavigate();
   const location = useLocation();
   const car = location.state;
+  const carFilter = JSON.parse(localStorage.getItem("carFilters") as string);
+
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const userId = useAppSelector((state) => state.user.id);
+
+  const handlePayment = async () => {
+    if (isLoggedIn) {
+      localStorage.setItem(
+        "carFilters",
+        JSON.stringify({
+          ...carFilter,
+          paymentMethod: selectedPayment,
+        })
+      );
+
+      const payload: ITransactions = {
+        idUser: +userId,
+        idCar: car.id,
+        totalPrice: totalPrice,
+        withDriver: +carFilter.driverType,
+        rentDate: carFilter.rentDate,
+        pickupTime: carFilter.pickupTime,
+        totalPassenger: +carFilter.totalPassenger,
+        paymentMethod: selectedPayment,
+        paymentStatus: "ongoing",
+      };
+
+      console.log(payload);
+
+      const response = await fetch(
+        "https://binar-car-rental-api-bayu.fly.dev/api/v1/transactions",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+      const id = data.data.id;
+
+      navigate(`/payment/${id}`);
+    } else {
+      alert("Need to Sign In");
+    }
+  };
 
   useEffect(() => {
-    console.log(car);
-    console.log(selectedPayment);
+    if (carFilter.paymentMethod) {
+      setSelectedPayment(carFilter.paymentMethod);
+    }
+
+    if (carFilter.driverType === "1") {
+      setTotalPrice(car.rentPerDay + 100000);
+    } else {
+      setTotalPrice(car.rentPerDay);
+    }
   }, []);
 
   return (
@@ -25,12 +84,12 @@ export default function CarCheckout() {
       {/* Filters */}
       <div className="py-32 lg:py-3"></div>
       <div className="mx-5 space-y-5 lg:mx-20 xl:mx-32 absolute -top-48 right-0 left-0 z-20">
-        <CarCheckoutProgress progress={2} />
+        <CarCheckoutProgress withBack />
         <CarFilter title="Detail Pesananmu" />
       </div>
 
       {/* Payment */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         {/* Left */}
         <div className="p-4 border rounded-sm space-y-6 h-fit">
           <p className="font-bold text-lg">Pilih Bank Transfer</p>
@@ -116,7 +175,7 @@ export default function CarCheckout() {
               />
             </div>
             <p className="font-bold text-md">
-              Rp {convertRupiah(car.rentPerDay)}
+              Rp {convertRupiah(totalPrice as number)}
             </p>
           </div>
 
@@ -128,10 +187,18 @@ export default function CarCheckout() {
                 <ul className="list-disc ps-8 space-y-2">
                   <li>
                     <div className="flex justify-between">
-                      <p>1 Mobil dengan sopir</p>
+                      <p>1 Mobil</p>
                       <p>Rp {convertRupiah(car.rentPerDay)}</p>
                     </div>
                   </li>
+                  {carFilter.driverType === "1" && (
+                    <li>
+                      <div className="flex justify-between">
+                        <p>Driver/Supir</p>
+                        <p>Rp 100.000</p>
+                      </div>
+                    </li>
+                  )}
                 </ul>
               </div>
               <div>
@@ -143,12 +210,14 @@ export default function CarCheckout() {
                       <p className="text-green-400">Termasuk</p>
                     </div>
                   </li>
-                  <li>
-                    <div className="flex justify-between">
-                      <p>Biaya makan sopir</p>
-                      <p className="text-green-400">Termasuk</p>
-                    </div>
-                  </li>
+                  {carFilter.driverType === "1" && (
+                    <li>
+                      <div className="flex justify-between">
+                        <p>Biaya makan sopir</p>
+                        <p className="text-green-400">Termasuk</p>
+                      </div>
+                    </li>
+                  )}
                 </ul>
               </div>
               <div>
@@ -161,16 +230,16 @@ export default function CarCheckout() {
               <hr />
               <div className="flex justify-between font-bold text-md">
                 <p>Total</p>
-                <p>Rp {convertRupiah(car.rentPerDay)}</p>
+                <p>Rp {convertRupiah(totalPrice as number)}</p>
               </div>
             </div>
           )}
 
           <button
             {...(!selectedPayment && { disabled: true })}
-            onClick={() => alert("Clicked")}
+            onClick={handlePayment}
             className={`${
-              !selectedPayment ? "bg-green-300" : "bg-green-400"
+              !selectedPayment ? "bg-green-300" : "bg-green-500"
             } py-1 w-full font-bold text-white`}
           >
             Bayar
