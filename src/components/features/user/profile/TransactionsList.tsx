@@ -1,18 +1,19 @@
 import useFetchTransactionsList from "../../../../hooks/useFetchTransactionsList";
 import { ITransactions } from "../../../../types/transaction";
+import Transaction from "./Transaction";
 
 export default function TransactionsList() {
   const { data, isLoading } = useFetchTransactionsList();
 
   return (
     <>
-      <div>
+      <div className="space-y-2">
         {isLoading ? (
           <p>Loading...</p>
         ) : (
           data &&
           data.data.map((transaction: ITransactions) => (
-            <p key={transaction.id}>{transaction.id}</p>
+            <Transaction id={transaction.id as number} />
           ))
         )}
       </div>
