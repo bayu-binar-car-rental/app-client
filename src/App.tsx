@@ -21,7 +21,9 @@ import {
   CarDetailPage,
   CarCheckoutPage,
   CarPaymentPage,
+  UserTransactionsPage,
 } from "./pages";
+import ProfileLayout from "./layouts/ProfileLayout";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,24 @@ const router = createBrowserRouter([
       {
         path: "/payment/:paymentId",
         element: <CarPaymentPage />,
+      },
+      // #region Profile
+      {
+        element: <ProfileLayout />,
+        children: [
+          {
+            path: "/profile/:userId",
+            element: <h1>Profile Page</h1>,
+          },
+          {
+            path: "/profile/:userId/transactions",
+            element: <UserTransactionsPage />,
+          },
+          {
+            path: "/profile/:userId/cars",
+            element: <h1>Profile Cars Page</h1>,
+          },
+        ],
       },
     ],
   },
