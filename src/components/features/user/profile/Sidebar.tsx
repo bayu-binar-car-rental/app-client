@@ -12,7 +12,7 @@ export default function Sidebar() {
     <>
       <nav
         id="sidebar"
-        className="md:basis-1/3 p-3 border rounded-md md:space-y-5"
+        className="md:basis-1/3 h-fit p-3 border rounded-md md:space-y-5"
       >
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">

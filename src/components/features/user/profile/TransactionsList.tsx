@@ -13,7 +13,7 @@ export default function TransactionsList() {
         ) : (
           data &&
           data.data.map((transaction: ITransactions) => (
-            <Transaction id={transaction.id as number} />
+            <Transaction key={transaction.id} id={transaction.id as number} />
           ))
         )}
       </div>

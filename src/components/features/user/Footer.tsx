@@ -16,7 +16,6 @@ const footerIcons = [
 export default function Footer() {
   const location = useLocation();
   const pathname = location.pathname;
-  console.log(pathname);
 
   return (
     <footer
