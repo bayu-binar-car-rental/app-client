@@ -33,7 +33,7 @@ export default function Sidebar() {
             </div>
           </button>
         </div>
-        <hr />
+        <hr className="hidden md:flex" />
         <SidebarMenus className="hidden md:flex gap-2" />
       </nav>
     </>

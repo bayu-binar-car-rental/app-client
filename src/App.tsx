@@ -21,6 +21,7 @@ import {
   CarDetailPage,
   CarCheckoutPage,
   CarPaymentPage,
+  UserTransactionsPage,
 } from "./pages";
 import ProfileLayout from "./layouts/ProfileLayout";
 
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/profile/:userId/transactions",
-            element: <h1>Profile Transaction Page</h1>,
+            element: <UserTransactionsPage />,
           },
           {
             path: "/profile/:userId/cars",

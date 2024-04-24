@@ -5,3 +5,5 @@ export { default as CarListPage } from "./user/CarListPage";
 export { default as CarDetailPage } from "./user/CarDetailPage";
 export { default as CarCheckoutPage } from "./user/CarCheckoutPage";
 export { default as CarPaymentPage } from "./user/PaymentPage";
+
+export { default as UserTransactionsPage } from "./user/profile/UserTransactionsPage";
