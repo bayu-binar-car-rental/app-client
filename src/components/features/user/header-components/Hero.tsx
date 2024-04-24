@@ -10,7 +10,11 @@ export default function Hero() {
       {/* Padding for blank content */}
       <div
         className={`py-20 ${
-          pathname !== "/" && pathname !== "/car" ? "visible" : "hidden"
+          pathname !== "/" &&
+          pathname !== "/car" &&
+          !pathname.includes("/profile")
+            ? "visible"
+            : "hidden"
         }`}
       />
 

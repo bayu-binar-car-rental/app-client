@@ -53,10 +53,16 @@ export default function ProfileCanvas() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { toggleProfileCanvas } = useAppSelector(selectToggle);
+  const { id } = useAppSelector((state) => state.user);
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
     window.location.reload();
+  };
+
+  const handleProfileNavigate = () => {
+    navigate(`/profile/${id}`);
+    dispatch(setToggleProfileCanvas(false));
   };
 
   if (toggleProfileCanvas) {
@@ -69,7 +75,7 @@ export default function ProfileCanvas() {
         <div className="w-2/3 md:w-1/4 z-30 p-5 fixed right-0 top-0 bottom-0 bg-white shadow-md space-y-5 rounded-s-xl">
           <ProfileCanvasHeader />
           <div className="border-t-2 py-2">
-            <ProfileCanvasItem onClick={() => navigate("/profile")}>
+            <ProfileCanvasItem onClick={handleProfileNavigate}>
               Profile
             </ProfileCanvasItem>
             <ProfileCanvasItem onClick={handleSignOut}>
