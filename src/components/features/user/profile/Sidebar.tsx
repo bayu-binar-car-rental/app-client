@@ -1,38 +1,40 @@
+import { useState } from "react";
+import Avatar from "../../../ui/Avatar";
+import { Burger } from "../../../ui/icons";
+import SidebarMenus from "./SidebarMenus";
 import { useAppSelector } from "../../../../states/hooks";
 
 export default function Sidebar() {
-  const { id } = useAppSelector((state) => state.user);
-
-  const menus = [
-    {
-      label: "Profile",
-      path: `/profile/${id}`,
-    },
-    {
-      label: "Transactions",
-      path: `/profile/${id}/transactions`,
-    },
-    {
-      label: "Cars",
-      path: `/profile/${id}/cars`,
-    },
-  ];
+  const { username } = useAppSelector((state) => state.user);
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   return (
     <>
-      <nav id="sidebar" className="md:basis-1/3 p-3 border rounded-md">
-        <ul className="flex flex-col gap-3">
-          {menus.map((menu, index) => (
-            <li key={index}>
-              <a
-                className="p-1 w-full inline-block hover:bg-slate-300"
-                href={menu.path}
-              >
-                {menu.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <nav
+        id="sidebar"
+        className="md:basis-1/3 p-3 border rounded-md md:space-y-5"
+      >
+        <div className="flex justify-between">
+          <div className="flex gap-2 items-center">
+            <Avatar />
+            <p>{username}</p>
+          </div>
+          <button
+            onClick={() => setOpenMenu(!openMenu)}
+            className="border p-1 hover:bg-slate-300 focus:bg-slate-300 blur:bg-white md:hidden relative"
+          >
+            <Burger />
+            <div
+              className={`${
+                openMenu ? "flex" : "hidden"
+              } absolute top-10 right-0 bg-white border p-2 text-left rounded-md shadow-md`}
+            >
+              <SidebarMenus className="text-sm" />
+            </div>
+          </button>
+        </div>
+        <hr />
+        <SidebarMenus className="hidden md:flex gap-2" />
       </nav>
     </>
   );
