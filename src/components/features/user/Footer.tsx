@@ -3,6 +3,7 @@ import instagramIcon from "../../../assets/icon_instagram.png";
 import twitterIcon from "../../../assets/icon_twitter.png";
 import mailIcon from "../../../assets/icon_mail.png";
 import twitchIcon from "../../../assets/icon_twitch.png";
+import { useLocation } from "react-router-dom";
 
 const footerIcons = [
   facebookIcon,
@@ -13,8 +14,16 @@ const footerIcons = [
 ];
 
 export default function Footer() {
+  const location = useLocation();
+  const pathname = location.pathname;
+  console.log(pathname);
+
   return (
-    <footer className="space-y-4 sm:space-y-0 sm:grid grid-cols-4 pb-5">
+    <footer
+      className={`space-y-4 sm:space-y-0 pb-5 ${
+        pathname.includes("/profile") ? "hidden" : "sm:grid grid-cols-4"
+      }`}
+    >
       {/* Footer */}
       <div className="space-y-3">
         <p>Jalan Suroyo No. 161 Mayangan Kota Probolonggo 672000</p>

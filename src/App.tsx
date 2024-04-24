@@ -22,6 +22,7 @@ import {
   CarCheckoutPage,
   CarPaymentPage,
 } from "./pages";
+import ProfileLayout from "./layouts/ProfileLayout";
 
 const router = createBrowserRouter([
   {
@@ -52,14 +53,23 @@ const router = createBrowserRouter([
         path: "/payment/:paymentId",
         element: <CarPaymentPage />,
       },
-    ],
-  },
-  {
-    element: <h1>Profile Page</h1>,
-    children: [
+      // #region Profile
       {
-        path: "/profile/:userId",
-        element: <h1>User Profile</h1>,
+        element: <ProfileLayout />,
+        children: [
+          {
+            path: "/profile/:userId",
+            element: <h1>Profile Page</h1>,
+          },
+          {
+            path: "/profile/:userId/transactions",
+            element: <h1>Profile Transaction Page</h1>,
+          },
+          {
+            path: "/profile/:userId/cars",
+            element: <h1>Profile Cars Page</h1>,
+          },
+        ],
       },
     ],
   },
