@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../../../pages/admin/AdminLayout";
 import { ICar, ICarResponse, ICarParams } from "../../../../types/cars";
 import CarCard from "./CarCard";
 
@@ -26,7 +25,7 @@ export default function CarListContent({
         const size = params?.size || "";
 
         const response = await fetch(
-          `${BASE_URL}/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
+          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
         );
         const data = (await response.json()) as ICarResponse;
 

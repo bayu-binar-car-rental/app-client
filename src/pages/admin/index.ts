@@ -1,4 +1,4 @@
-export { default as AdminLayout } from "./AdminLayout";
+export { default as AdminLayout } from "../../layouts/AdminLayout";
 
 export { default as CarListPage } from "./Cars/CarListPage";
 export { default as CarDetailsPage } from "./Cars/CarDetailsPage";

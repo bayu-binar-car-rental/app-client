@@ -94,27 +94,31 @@ const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
-        element: <DashboardPage />,
+        element: <h1>Dashboard</h1>,
+        // element: <DashboardPage />,
       },
       {
         path: "analytics",
-        element: <AnalyticsPage />,
+        element: <h1>Analytics</h1>,
+        // element: <AnalyticsPage />,
       },
       {
-        path: "car-list",
-        element: <CarListPage />,
+        path: "cars",
+        element: <h1>Cars</h1>,
+        // element: <CarListPage />,
       },
       {
-        path: "car-list/add-new-car",
+        path: "cars/add-new-car",
         element: <CarDetailsPage />,
       },
       {
-        path: "car-list/edit-car/:carId",
+        path: "cars/edit-car/:carId",
         element: <CarDetailsPage />,
       },
       {
-        path: "car-rent",
-        element: <CarRentPage />,
+        path: "rents",
+        element: <h1>Rents</h1>,
+        // element: <CarRentPage />,
       },
     ],
   },
