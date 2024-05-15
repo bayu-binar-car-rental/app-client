@@ -1,8 +1,8 @@
-import { ITransactions } from "../types/transaction";
+import { ITransactionsPayload } from "../types/transaction";
 
 interface IUpdateTranscationProps {
   transactionId: number;
-  params: ITransactions;
+  params: ITransactionsPayload;
 }
 
 const useUpdateTransaction = async ({

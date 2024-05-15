@@ -19,15 +19,15 @@ export default function AdminLayout() {
   useEffect(() => {
     setSelectedSubMenu(0);
     navigate(menus[selectedMenu]["paths"][0]);
-  }, [selectedMenu]);
+  }, [selectedMenu, navigate]);
 
   useEffect(() => {
     navigate(menus[selectedMenu]["paths"][selectedSubMenu]);
-  }, [selectedSubMenu]);
+  }, [selectedMenu, selectedSubMenu, navigate]);
 
   return (
     <>
-      <div className="flex flex-row h-screen bg-slate-50 overflow-clip">
+      <div className="flex flex-row h-screen bg-light-ungu overflow-clip">
         {/* Sidebar - Menus */}
         <SidebarMenus
           menus={menus}
