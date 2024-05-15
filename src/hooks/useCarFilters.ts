@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useCarFilters() {
-  const [driverType, setDriverType] = useState<string | undefined>(undefined);
+  const [driverType, setDriverType] = useState<number>(0);
   const [rentDate, setRentDate] = useState<string | undefined>(undefined);
   const [pickupTime, setPickupTime] = useState<string | undefined>(undefined);
   const [totalPassenger, setTotalPassenger] = useState<string>("");
