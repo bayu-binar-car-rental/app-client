@@ -22,7 +22,7 @@ export default function useCarFilters() {
 
   // Validation
   useEffect(() => {
-    if (driverType && rentDate && pickupTime) {
+    if (rentDate && pickupTime) {
       setIsFilterValid(true);
     }
   }, [driverType, rentDate, pickupTime]);
