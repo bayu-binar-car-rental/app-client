@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ITransactions } from "../types/transaction";
-import { fetchTransactions } from "../services/transactions";
-import { IApiResponse } from "../types/response";
+import { ITransactions } from "../../types/transaction";
+import { fetchTransactions } from "../../services/transactions";
+import { IApiResponse } from "../../types/response";
 
 export default function useFetchTransactions() {
   const [transactions, setTransactions] = useState<ITransactions[]>([]);
