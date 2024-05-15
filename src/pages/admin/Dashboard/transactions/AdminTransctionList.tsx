@@ -5,7 +5,7 @@ import {
   updateTransactions,
 } from "../../../../services/transactions";
 import convertRupiah from "../../../../utils/convertRupiah";
-import { ITransactions } from "../../../../types/transaction";
+import { ITransactions, TPaymentStatus } from "../../../../types/transaction";
 import { IApiResponse } from "../../../../types/response";
 
 export default function AdminTransactionList() {
@@ -30,6 +30,9 @@ export default function AdminTransactionList() {
         const data = (await fetchTransactions()) as IApiResponse<
           ITransactions[]
         >;
+        data.data.sort(
+          (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+        );
         setTransactions(data.data);
       } catch (e) {
         console.log(e);
@@ -41,8 +44,6 @@ export default function AdminTransactionList() {
 
     refreshTransactionData();
   }, [refresh]);
-
-  type TPaymentStatus = "ongoing" | "success" | "failed" | "rejected";
 
   function setTransactionPaymentStatus(id: number, status: TPaymentStatus) {
     updateTransactions(id, { paymentStatus: status });

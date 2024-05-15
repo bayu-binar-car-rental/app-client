@@ -1,5 +1,5 @@
 import { IApiResponse } from "../types/response";
-import { ITransactions } from "../types/transaction";
+import { ITransactions, ITransactionsPayload } from "../types/transaction";
 const BASE_URL = "https://binar-car-rental-api-bayu.fly.dev/api/v1";
 
 // Fetch Transaction List
@@ -40,7 +40,7 @@ export const fetchTransactionsByUserId = async (userId: number) => {
 // Update transaction
 export const updateTransactions = async (
   transactionId: number,
-  payload: ITransactions
+  payload: ITransactionsPayload
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
