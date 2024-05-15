@@ -1,7 +1,10 @@
+import AdminTransactionList from "./transactions/AdminTransctionList";
+
 export default function DashboardPage() {
   return (
     <>
-      <h1>Dashboard</h1>
+      <h2 className="font-bold text-2xl">Dashboard</h2>
+      <AdminTransactionList />
     </>
   );
 }

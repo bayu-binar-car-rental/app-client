@@ -6,6 +6,8 @@ export default {
       colors: {
         biru: "#0D28A6",
         hijau: "#5CB85F",
+        "light-ungu": "#F4F5F7",
+        ungu: "#CFD4ED",
       },
     },
     // colors: {

@@ -3,7 +3,7 @@ import { ITransactions } from "../../types/transaction";
 import { fetchTransactions } from "../../services/transactions";
 import { IApiResponse } from "../../types/response";
 
-export default function useFetchTransactions() {
+export default function useFetchTransactions(refresh?: boolean) {
   const [transactions, setTransactions] = useState<ITransactions[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -23,7 +23,7 @@ export default function useFetchTransactions() {
     };
 
     fetchData();
-  }, []);
+  }, [refresh]);
 
   return { transactions, setTransactions, isLoading, setIsLoading };
 }
