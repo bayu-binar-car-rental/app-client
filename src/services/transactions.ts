@@ -1,8 +1,11 @@
+import { IApiResponse } from "../types/response";
 import { ITransactions } from "../types/transaction";
 const BASE_URL = "https://binar-car-rental-api-bayu.fly.dev/api/v1";
 
 // Fetch Transaction List
-export const fetchTransactions = async () => {
+export const fetchTransactions = async (): Promise<
+  IApiResponse<ITransactions[]> | undefined
+> => {
   try {
     const response = await fetch(`${BASE_URL}/transactions`);
     const data = await response.json();

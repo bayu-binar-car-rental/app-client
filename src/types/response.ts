@@ -3,3 +3,8 @@ export interface IMeta {
   success: boolean;
   message: string;
 }
+
+export interface IApiResponse<T> {
+  meta: IMeta;
+  data: T;
+}
