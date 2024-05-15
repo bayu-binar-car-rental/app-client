@@ -30,8 +30,8 @@ export default function CarFilter({ title, variant }: IProps) {
   } = useCarFilters();
 
   useEffect(() => {
-    console.log(driverType, rentDate, pickupTime, isFilterValid);
-  });
+    console.log(driverType);
+  }, [driverType]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ export default function CarFilter({ title, variant }: IProps) {
           <select
             value={driverType}
             disabled={variant !== "submit"}
-            onChange={(e) => setDriverType(e.target.value)}
+            onChange={(e) => setDriverType(+e.target.value)}
             className={`p-2 text-sm h-full w-full block rounded-md border focus:outline-hijau ${
               variant !== "submit"
                 ? "bg-[#94a3b8]"

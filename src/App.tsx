@@ -22,7 +22,7 @@ import {
   CarCheckoutPage,
   CarPaymentPage,
   UserTransactionsPage,
-} from "./pages";
+} from "./pages/user";
 import ProfileLayout from "./layouts/ProfileLayout";
 
 const router = createBrowserRouter([

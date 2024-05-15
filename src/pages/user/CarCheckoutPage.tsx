@@ -8,7 +8,7 @@ import { GoCalendar, GoGear, GoPeople } from "react-icons/go";
 
 import convertRupiah from "../../utils/convertRupiah";
 import CarFilter from "../../components/ui/CarFilter";
-import { ITransactions } from "../../types/transaction";
+import { ITransactionsPayload } from "../../types/transaction";
 import CarCheckoutProgress from "../../components/ui/CarCheckoutProgress";
 
 export default function CarCheckoutPage() {
@@ -34,10 +34,10 @@ export default function CarCheckoutPage() {
         })
       );
 
-      const payload: ITransactions = {
+      const payload: ITransactionsPayload = {
         idUser: +userId,
         idCar: car.id,
-        totalPrice: totalPrice,
+        totalPrice: totalPrice as number,
         withDriver: +carFilter.driverType,
         rentDate: carFilter.rentDate,
         pickupTime: carFilter.pickupTime,
@@ -77,7 +77,7 @@ export default function CarCheckoutPage() {
     } else {
       setTotalPrice(car.rentPerDay);
     }
-  }, []);
+  }, [carFilter.paymentMethod, carFilter.driverType, car.rentPerDay]);
 
   return (
     <>
