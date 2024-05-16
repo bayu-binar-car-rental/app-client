@@ -6,12 +6,12 @@ import modalImage from "../../../../assets/img-BeepBeep.png";
 
 import { ICar } from "../../../../types/cars";
 import { ICarParams } from "../../../../types/cars";
-import { ICarResponse } from "../../../../types/cars";
 
 import getDate from "../../../../utils/getDate";
 import convertRupiah from "../../../../utils/convertRupiah";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { IApiResponse } from "../../../../types/response";
 
 interface IProps {
   car: ICar;
@@ -54,7 +54,7 @@ export default function CarCard({ car, params, setCars }: IProps) {
       const carResponse = await fetch(
         `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars?availableOnly=${availableOnly}&search=${search}&size=${size}`
       );
-      const data = (await carResponse.json()) as ICarResponse;
+      const data = (await carResponse.json()) as IApiResponse<ICar[]>;
 
       if (data.meta.code !== 401) {
         setCars(data.data as ICar[]);
