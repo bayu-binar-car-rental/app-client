@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { ICar } from "../types/cars";
-import { IApiResponse } from "../types/response";
-import { fetchCarByCarIdApi } from "../services/cars";
+import { ICar } from "../../types/cars";
+import { IApiResponse } from "../../types/response";
+import { fetchCarByCarIdApi } from "../../services/cars";
 
 export default function useFetchCarByCarId(carId: string) {
   const [car, setCar] = useState<ICar | null>();

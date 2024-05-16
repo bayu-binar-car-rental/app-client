@@ -8,7 +8,7 @@ import { IoChevronDownOutline } from "react-icons/io5";
 
 import CarFilter from "../../components/ui/CarFilter";
 import convertRupiah from "../../utils/convertRupiah";
-import useFetchCar from "../../hooks/useFetchCar";
+import useFetchCar from "../../hooks/cars/useFetchCar";
 import Button from "../../components/ui/Button";
 import CarSpecs from "../../components/ui/CarCard/CarSpecs";
 import { ICar } from "../../types/cars";
