@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   AdminLayout,
   CarRentPage,
-  CarDetailsPage,
+  AdminCarDetailsPage,
   DashboardPage,
   AnalyticsPage,
+  AdminCarListPage,
 } from "./pages/admin";
 
 // Auth
@@ -102,15 +103,15 @@ const router = createBrowserRouter([
       },
       {
         path: "car-list",
-        element: <CarListPage />,
+        element: <AdminCarListPage />,
       },
       {
         path: "car-list/add-new-car",
-        element: <CarDetailsPage />,
+        element: <AdminCarDetailsPage />,
       },
       {
         path: "car-list/edit-car/:carId",
-        element: <CarDetailsPage />,
+        element: <AdminCarDetailsPage />,
       },
       {
         path: "car-rent",
