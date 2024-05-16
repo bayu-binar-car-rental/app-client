@@ -1,21 +1,18 @@
 import CarFilter from "../../components/ui/CarFilter";
 
-import { selectLoading, setIsLoading } from "../../states/slices/loadingSlice";
-import { useAppSelector, useAppDispatch } from "../../states/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Canvas from "../../components/ui/Canvas";
 
 export default function CarSearchPage() {
-  const isLoading = useAppSelector(selectLoading);
-  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(setIsLoading(true));
+    setIsLoading(true);
     if (localStorage.getItem("carFilters")) {
       localStorage.removeItem("carFilters");
     }
 
-    dispatch(setIsLoading(false));
+    setIsLoading(false);
   }, []);
 
   return (
