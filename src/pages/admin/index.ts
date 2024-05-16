@@ -1,7 +1,7 @@
 export { default as AdminLayout } from "./AdminLayout";
 
-export { default as CarListPage } from "./Cars/CarListPage";
-export { default as CarDetailsPage } from "./Cars/CarDetailsPage";
+export { default as AdminCarListPage } from "./Cars/AdminCarListPage";
+export { default as AdminCarDetailsPage } from "./Cars/AdminCarDetailsPage";
 export { default as CarRentPage } from "./Cars/CarRentPage";
 export { default as CarAddPage } from "./Cars/CarAddPage";
 

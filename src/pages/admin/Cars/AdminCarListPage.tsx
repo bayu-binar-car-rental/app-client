@@ -10,7 +10,6 @@ const buttonLabels: string[] = ["All", "Small", "Medium", "Large"];
 
 export default function CarList() {
   const [selectedCarSize, setSelectedCarSize] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [toggle, setToggle] = useState<boolean>(false);
   const [params, setParams] = useState<ICarParams>({ availableOnly: false });
 
@@ -18,7 +17,7 @@ export default function CarList() {
 
   useEffect(() => {
     setParams({ ...params, availableOnly: toggle });
-  }, [toggle]);
+  }, [params, toggle]);
 
   return (
     <>
@@ -80,11 +79,7 @@ export default function CarList() {
 
       {/* List Content */}
       <div className="grid grid-cols-3 gap-5 mt-5">
-        <CarListContent
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          params={params}
-        />
+        <CarListContent params={{ ...params }} />
       </div>
     </>
   );
