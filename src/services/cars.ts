@@ -24,3 +24,16 @@ export async function fetchCars(
     console.log(e);
   }
 }
+
+// Fetch car by car id
+export const fetchCarByCarIdApi = async (
+  carId: string
+): Promise<IApiResponse<ICar> | undefined> => {
+  try {
+    const response = await fetch(`${BASE_URL}/cars/${carId}`);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

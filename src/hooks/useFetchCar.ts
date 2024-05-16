@@ -1,34 +1,30 @@
 import { useEffect, useState } from "react";
 
 import { ICar } from "../types/cars";
-import { useAppDispatch } from "../states/hooks";
-import { setIsLoading } from "../states/slices/loadingSlice";
+import { IApiResponse } from "../types/response";
+import { fetchCarByCarIdApi } from "../services/cars";
 
-export default function useFetchCar(id: string) {
-  const carId = id;
-  const dispatch = useAppDispatch();
+export default function useFetchCarByCarId(carId: string) {
   const [car, setCar] = useState<ICar | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(setIsLoading(true));
-
     const fetchCar = async (carId: string) => {
       try {
-        const response = await fetch(
-          `https://binar-car-rental-api-bayu.fly.dev/api/v1/cars/${+carId}`
-        );
-
-        const data = await response.json();
-        setCar(data.data);
+        setIsLoading(true);
+        const data = (await fetchCarByCarIdApi(
+          carId
+        )) as unknown as IApiResponse<ICar>;
+        setCar(data?.data);
       } catch (e) {
         console.log(e);
       } finally {
-        dispatch(setIsLoading(false));
+        setIsLoading(false);
       }
     };
 
-    fetchCar(carId as string);
-  }, []);
+    fetchCar(carId);
+  }, [carId]);
 
-  return { car, setCar };
+  return { car, setCar, isLoading, setIsLoading };
 }
