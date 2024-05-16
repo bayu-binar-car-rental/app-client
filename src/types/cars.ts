@@ -1,5 +1,3 @@
-import { IMeta } from "./response";
-
 export interface ICar {
   id?: number;
   plate: string;
@@ -18,11 +16,6 @@ export interface ICar {
   specs: string[];
   created_at?: string;
   updated_at?: string;
-}
-
-export interface ICarResponse {
-  meta: IMeta;
-  data?: ICar[];
 }
 
 export interface ICarParams {
