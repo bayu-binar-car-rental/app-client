@@ -1,15 +1,19 @@
-import useFetchCars from "../../hooks/useFetchCars";
-import { useAppSelector } from "../../states/hooks";
-import { selectLoading } from "../../states/slices/loadingSlice";
+import useFetchCars from "../../hooks/cars/useFetchCars";
 
 import Title from "../../components/ui/Title";
 import CarFilter from "../../components/ui/CarFilter";
 import CarNotFound from "../../components/ui/CarNotFound";
 import CarCard from "../../components/ui/CarCard/CarCard";
+import { useLocation } from "react-router-dom";
 
 export default function CarListPage() {
-  const isLoading = useAppSelector(selectLoading);
-  const { cars } = useFetchCars();
+  const location = useLocation();
+  const { totalPassenger } = location.state;
+
+  const { cars, isLoading } = useFetchCars({
+    availableOnly: true,
+    size: totalPassenger,
+  });
 
   return (
     <>
